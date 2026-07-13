@@ -1,57 +1,28 @@
 ---
-title: "Week 2 Worklog"
-date: 2024-01-01
-weight: 1
+title: "Worklog Week 2"
+date: 2026-06-08
+weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 2 Objectives:
+* Construct a minimized testing dataset workflow (Toy Dataset) from the raw pulmonary X-ray database to optimize cloud consumption bounds.
+* Re-engineer the inference distribution model into a highly secure distributed Serverless pipeline, replacing the insecure legacy framework that loads model binaries locally.
+* Finalize the technical syllabus and write-up for Tech Blog Post 1 for submission to the cloud learning management system.
 
-* Connect and get acquainted with members of First Cloud AI Journey.
-* Understand basic AWS services, how to use the console & CLI.
+### Tasks Implemented This Week:
+| Day | Task Description | Start Date | End Date | Reference Materials |
+| --- | --- | --- | --- | --- |
+| Mon | - Assessed security and structural risks within the legacy `app.py` script loading local Keras/TFLite files.<br>- Outlined a robust Serverless migration topology incorporating cryptographic access layers. | 08/06/2026 | 08/06/2026 | AWS Architecture Reference Sheets |
+| Tue | - Designed the structural skeleton for a 3-part cloud logging blog sequence required by FCAJ criteria.<br>- Authored the complete draft for Blog 1: "Architecting Secure Serverless MLOps Pipelines and Cloud Cost Governance on AWS." | 09/06/2026 | 09/06/2026 | AWS Study Group Content Guidelines |
+| Wed | - Engineered a python data engineering script `create_toy_dataset.py` executing a balanced stratified random sampling to extract 120 X-ray images (100 Train, 20 Test/Val split across target labels). | 10/06/2026 | 10/06/2026 | Python Data Science Manuals |
+| Thu | - Provisioned core cloud object storage primitives via AWS CLI to build target Amazon S3 Buckets (`fcj-pulmonary-suite-data-2026`).<br>- Validated data integrity and execution pathways of the processing script locally. | 11/06/2026 | 11/06/2026 | Amazon S3 Developer Guide |
+| Fri | - Synchronized the complete hierarchical Toy Dataset directory up to the target cloud storage bucket via AWS CLI.<br>- Programmed a secure metadata signing algorithm within the reporting generator to assert programmatic ownership. | 12/06/2026 | 12/06/2026 | Internal Diagnostic Reporting Codebase |
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCAJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
-
-### Week 2 Achievements:
-
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+### Results Achieved:
+* Deployed a robust automated data downsampling workflow that structures the 120-image Toy Dataset, ensuring that subsequent SageMaker execution runs wrap up within 1-2 minutes and capping test burns under $0.50 credit per run.
+* Successfully initialized structured cloud storage topologies and staged the preliminary baseline X-ray artifacts into secure Amazon S3 partitions via AWS CLI.
+* Ratified a finalized secure Serverless architecture scheme: Streamlit interfaces route payloads through encrypted Amazon API Gateway REST proxies, triggering an AWS Lambda function that retrieves access tokens from AWS Secrets Manager to query an isolated SageMaker Endpoint.
+* Integrated digital ownership metadata strings ("Verified by AI Engineer Nguyen Thai Hung - AWS MLOps Suite") into the backend analytical output layers (.xlsx/.txt modules).
+* Successfully published Technical Blog Post 1, meeting all editorial and academic standards outlined by the AWS Study Group committee.

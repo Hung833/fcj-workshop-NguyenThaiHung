@@ -59,12 +59,15 @@ graph LR
 
 ```mermaid
 architecture-beta
+
     group aws(cloud)[AWS Cloud]
+
     service billing(server)[Billing Engine] in aws
     service budget(database)[AWS Budgets] in aws
     service cloudwatch(internet)[CloudWatch] in aws
     service sns(disk)[Amazon SNS] in aws
     service user(internet)[Engineer]
+
     billing:L -- R:budget
     budget:L -- R:cloudwatch
     cloudwatch:L -- R:sns

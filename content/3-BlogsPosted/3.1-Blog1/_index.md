@@ -1,5 +1,5 @@
 ---
-title: "FinOps Journey: Smart Budget Management for Online AI Projects on AWS"
+title: "Blog 1"
 date: 2026-07-22
 weight: 1
 chapter: false

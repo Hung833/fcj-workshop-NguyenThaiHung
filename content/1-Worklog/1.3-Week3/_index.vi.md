@@ -1,59 +1,26 @@
 ---
 title: "Worklog Tuần 3"
-date: 2024-01-01
-weight: 1
+date: 2026-06-15
+weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 3:
-
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Khởi chạy quy trình tiền xử lý dữ liệu và trích xuất đặc trưng (Data Preprocessing & Feature Engineering) trên đám mây bằng cách chuyển cấu trúc lệnh cục bộ sang Amazon SageMaker Processing Job.
+* Đồng bộ hóa và quản lý tập trung toàn bộ dữ liệu thô và dữ liệu đã qua xử lý trên kho lưu trữ đối tượng Amazon S3.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Tách mã nguồn tiền xử lý dữ liệu ảnh X-Quang thành file thực thi Python độc lập `preprocessing.py` thích hợp với môi trường container.<br>- Định nghĩa cấu trúc phân mục lưu trữ đầu ra cho dữ liệu trên S3. | 15/06/2026 | 15/06/2026 | Amazon SageMaker Developer Guide |
+| 3 | - Thiết lập và phân quyền cho IAM Execution Role cho phép SageMaker có toàn quyền truy cập đọc/ghi dữ liệu trên S3 Bucket đã tạo.<br>- Khởi tạo môi trường làm việc tích hợp trên SageMaker Studio. | 16/06/2026 | 16/06/2026 | AWS IAM Permissions Reference |
+| 4 | - Cấu hình và khởi chạy SageMaker Processing Job sử dụng SDK Python, chỉ định sử dụng Instance Type tối ưu chi phí (`ml.m5.xlarge`) để xử lý tệp mã nguồn `preprocessing.py`. | 17/06/2026 | 17/06/2026 | SageMaker Python SDK API |
+| 5 | - Giám sát tiến độ thực thi tác vụ tiền xử lý, kiểm tra định dạng dữ liệu đầu ra và cấu trúc phân mảnh dữ liệu (Train/Test/Validation) tự động kết xuất về lại S3 bucket. | 18/06/2026 | 18/06/2026 | AWS SageMaker Console |
+| 6 | - Đánh giá hiệu năng và chi phí tiêu thụ của tác vụ tiền xử lý đám mây.<br>- Bắt đầu phác thảo cấu trúc đề cương cho bài viết Blog công nghệ thứ hai. | 19/06/2026 | 19/06/2026 | AWS Cost Explorer |
 
 ### Kết quả đạt được tuần 3:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Di chuyển thành công logic tiền xử lý ảnh từ máy trạm cục bộ lên hạ tầng điện toán đám mây phân tán của SageMaker Processing Job.
+* Toàn bộ tệp ảnh X-Quang phổi thử nghiệm (Toy Dataset) đã được chuẩn hóa kích thước, tăng cường dữ liệu nền (Data Augmentation) và lưu trữ tự động vào các thư mục `/train`, `/test`, `/validation` biệt lập trên Amazon S3.
+* Cấu hình thành công quyền kiểm soát IAM Role chuẩn xác, đảm bảo SageMaker Studio giao tiếp bảo mật tuyệt đối với tài nguyên lưu trữ đối tượng S3.
+* Khống chế thời gian xử lý dữ liệu hình ảnh trên Cloud hoàn tất trong vòng dưới 3 phút với mức chi phí hạ tầng tối ưu.

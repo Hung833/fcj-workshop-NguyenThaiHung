@@ -1,5 +1,5 @@
 ---
-title: "Hành Trình FinOps: Quản Lý Ngân Sách Thông Minh Cho Dự Án AI Trực Tuyến Trên AWS"
+title: "Blog 1"
 date: 2026-07-22
 weight: 1
 chapter: false

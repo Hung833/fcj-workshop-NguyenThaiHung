@@ -1,59 +1,26 @@
 ---
 title: "Worklog Tuần 4"
-date: 2024-01-01
-weight: 1
+date: 2026-06-22
+weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 4:
-
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Triển khai tác vụ huấn luyện mô hình sâu (SageMaker Training Job) trên Cloud sử dụng Custom Script để huấn luyện cấu trúc mô hình DenseNet121 nhận diện viêm phổi.
+* Quản lý luồng nạp dữ liệu huấn luyện đầu vào trực tiếp từ kênh dẫn lưu của Amazon S3.
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Viết tệp lệnh huấn luyện mô hình Keras độc lập `train.py`, cấu hình cơ chế nhận tham số đầu vào (Hyperparameters) qua bộ phân tích luận lý của SageMaker. | 22/06/2026 | 22/06/2026 | TensorFlow AWS Deep Learning Containers |
+| 3 | - Cấu hình SageMaker Estimator trong Studio, thiết lập định danh môi trường Framework (TensorFlow/Keras) và trỏ kênh dẫn dữ liệu đầu vào (Input Channels) đến các thư mục S3 đã tiền xử lý. | 23/06/2026 | 23/06/2026 | SageMaker Estimator API |
+| 4 | - Khởi chạy tác vụ SageMaker Training Job trên một máy chủ ảo tối ưu hóa đồ họa GPU (`ml.p3.2xlarge`) để huấn luyện kiến trúc mạng DenseNet121 với tập dữ liệu rút gọn Toy Dataset. | 24/06/2026 | 24/06/2026 | AWS SageMaker Instance Pricing |
+| 5 | - Theo dõi tiến độ hội tụ của hàm mất mát (Loss) và độ chính xác (Accuracy/Recall) thông qua luồng Log xuất trực tiếp từ Container về CloudWatch Logs. | 25/06/2026 | 25/06/2026 | Amazon CloudWatch Logs Console |
+| 6 | - Kiểm tra và xác thực tệp mô hình kết xuất đầu ra được đóng gói tự động dưới dạng nén `model.tar.gz` đẩy ngược lưu trữ bảo mật trên phân mục S3 Out. | 26/06/2026 | 26/06/2026 | Dự án mã nguồn cá nhân & Hồ sơ MLOps |
 
 ### Kết quả đạt được tuần 4:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Khởi chạy thành công quy trình huấn luyện mô hình học sâu thông qua Custom Script trên hạ tầng máy chủ ảo GPU của SageMaker Training Job.
+* Mô hình mạng DenseNet121 nhận diện ảnh bệnh lý phổi hoàn tất chu kỳ huấn luyện một cách trơn tru, không phát sinh lỗi bất tương thích thư viện trong Docker Container.
+* Hệ thống tự động thu thập và xuất bản toàn bộ chỉ số hiệu năng (Metrics) thời gian thực lên bảng điều khiển CloudWatch.
+* Tệp trọng số đầu ra `model.tar.gz` chứa cấu trúc mạng của dự án được đóng gói chuẩn quy cách và lưu trữ an toàn trên Amazon S3 phục vụ cho việc deploy sau này.

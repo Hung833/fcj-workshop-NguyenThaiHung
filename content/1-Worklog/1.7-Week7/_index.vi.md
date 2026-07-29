@@ -1,59 +1,25 @@
 ---
 title: "Worklog Tuần 7"
-date: 2024-01-01
-weight: 1
+date: 2026-07-13
+weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 7:
-
-* Kết nối, làm quen với các thành viên trong First Cloud AI Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Triển khai mô hình AI lên hạ tầng bất biến (Immutable Infrastructure) bằng Amazon SageMaker Serverless Inference V2 để tối ưu hóa chi phí (FinOps).
+* Thiết lập tầng giao tiếp API Serverless bằng Amazon API Gateway và AWS Lambda, quản lý cấu hình thông qua Biến môi trường (Environment Variables).
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCAJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Đóng gói Artifact mô hình chuẩn TensorFlow Serving (TFS), tự động hóa nạp thư viện `numpy`, `Pillow`, `requests` qua `requirements.txt` nhằm triệt tiêu lỗi thiếu Dependency. | 13/07/2026 | 13/07/2026 | AWS SageMaker Deployment |
+| 3 | - Kích hoạt triển khai SageMaker Serverless Endpoint V2. Xây dựng script dọn dẹp tài nguyên (Self-cleanup) tránh lỗi ResourceInUse. | 14/07/2026 | 14/07/2026 | SageMaker Serverless Inference |
+| 4 | - Lập trình hàm AWS Lambda (Python 3.12) nhận Base64, thiết lập IAM Role theo nguyên tắc Least Privilege để kết nối đến SageMaker Endpoint nội bộ. | 15/07/2026 | 15/07/2026 | AWS Lambda Developer Guide |
+| 5 | - Khởi tạo Amazon API Gateway, cấu hình phương thức `POST /predict` và tích hợp với hàm Lambda, loại bỏ hoàn toàn mã hóa cứng (hardcode) qua biến môi trường. | 16/07/2026 | 16/07/2026 | Amazon API Gateway Guide |
+| 6 | - Kiểm thử toàn trình (End-to-End) qua cURL, xác thực luồng dữ liệu Serverless trả về JSON dự đoán lâm sàng với độ trễ tối ưu. | 17/07/2026 | 17/07/2026 | Nhật ký kiểm thử hệ thống |
 
 ### Kết quả đạt được tuần 7:
-
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Chuyển đổi thành công sang kiến trúc Serverless 100%, bảo vệ ngân sách AWS ở mức $0.00 khi không có lưu lượng truy cập.
+* Mã nguồn `inference.py` hoạt động ổn định như một Proxy giao tiếp với TFS C++ Engine, khắc phục triệt để các lỗi Crash ẩn.
+* API Gateway và Lambda được thiết lập bảo mật, sẵn sàng tích hợp với Frontend (Web Streamlit).

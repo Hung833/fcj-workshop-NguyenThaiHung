@@ -21,4 +21,4 @@ pre: " <b> 1.1. </b> "
 
 ### Kết quả đạt được:
 * Nắm được rule bảo mật cơ bản (Least Privilege) của AWS.
-* Hai anh em đều đã cài đặt xong AWS CLI, login thành công vào region `ap-southeast-1` (Singapore) và biết cách thao tác tạo/xóa EC2 cơ bản.
+* Đã cài đặt xong AWS CLI, login thành công vào region `ap-southeast-1` (Singapore) và biết cách thao tác tạo/xóa EC2 cơ bản.

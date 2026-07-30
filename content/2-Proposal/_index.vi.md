@@ -1,108 +1,81 @@
 ---
 title: "Bản đề xuất"
-date: 2024-01-01
+date: 2026-06-01
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+# AI Pulmonary Diagnostic Suite  
+## Giải pháp AI hỗ trợ chẩn đoán bệnh lý phổi tự động hóa trên nền tảng AWS MLOps  
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+### 1. Tóm tắt dự án (Executive Summary)
+**AI Pulmonary Diagnostic Suite** là một nền tảng trí tuệ nhân tạo (AI) được thiết kế chuyên biệt để hỗ trợ các bác sĩ chẩn đoán hình ảnh phát hiện sớm các bệnh lý về phổi (Pulmonary diseases) thông qua ảnh chụp X-quang/CT. Dự án ứng dụng sức mạnh của học sâu (Deep Learning) kết hợp với kiến trúc **AWS MLOps** hiện đại. Bằng việc sử dụng hoàn toàn các dịch vụ AWS có khả năng mở rộng như Amazon SageMaker, Amazon S3, và AWS Lambda, giải pháp mang lại quy trình tự động hóa từ khâu xử lý dữ liệu, huấn luyện mô hình, tinh chỉnh siêu tham số (HPO) cho đến triển khai suy luận không máy chủ (Serverless Inference), giúp tối ưu hóa chi phí và đảm bảo độ chính xác cao trong y tế.
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+### 2. Tuyên bố vấn đề (Problem Statement)
+**Thực trạng:**  
+Việc phân tích số lượng lớn ảnh chụp X-quang/CT phổi hàng ngày đòi hỏi rất nhiều thời gian và công sức của đội ngũ y bác sĩ, đồng thời tiềm ẩn rủi ro sai sót do yếu tố chủ quan hoặc quá tải công việc. Việc triển khai các mô hình AI y tế hiện tại thường thiếu một pipeline chuẩn hóa (CI/CD/CT), dẫn đến khó khăn trong việc cập nhật mô hình, quản lý phiên bản và tốn kém chi phí duy trì máy chủ suy luận (Inference Server) khi không có request.
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+**Giải pháp đề xuất:**  
+Xây dựng một hệ thống MLOps end-to-end trên AWS:
+*   Sử dụng **Amazon S3** làm Data Lake lưu trữ tập dữ liệu hình ảnh y tế.
+*   Sử dụng **Amazon SageMaker** để thực hiện các luồng: Tiền xử lý dữ liệu, Huấn luyện mô hình (Training), và Tinh chỉnh siêu tham số (Hyperparameter Optimization - HPO).
+*   Quản lý vòng đời mô hình thông qua **SageMaker Model Registry**.
+*   Triển khai mô hình dưới dạng **SageMaker Serverless Endpoint** để tự động thu phóng (scale-to-zero) giúp tiết kiệm chi phí.
+*   Xây dựng API suy luận thông qua **Amazon API Gateway** và **AWS Lambda**.
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+**Lợi ích mang lại:**  
+*   **Tối ưu hóa quy trình y tế:** Hỗ trợ bác sĩ khoanh vùng và chẩn đoán nhanh chóng, giảm thiểu thời gian chờ đợi của bệnh nhân.
+*   **Tối ưu chi phí (Cost Optimization):** Áp dụng kiến trúc Serverless Inference, hệ thống chỉ tính phí khi có yêu cầu chẩn đoán hình ảnh thực tế, loại bỏ chi phí duy trì máy chủ 24/7.
+*   **Tự động hóa hoàn toàn:** Các pipeline được định nghĩa dưới dạng mã (Pipelines as Code), cho phép dễ dàng tái huấn luyện và triển khai khi có dữ liệu bệnh nhân mới.
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+### 3. Kiến trúc hệ thống (Solution Architecture)
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+Hệ thống được thiết kế theo chuẩn AWS Well-Architected Framework, tập trung vào Pillar Machine Learning và Serverless.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+![AI Pulmonary Architecture](/images/2-Proposal/architecture_diagram.png)
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+**Danh mục AWS Services & Chức năng:**
+*   **Amazon S3:** Lưu trữ dữ liệu thô (toy_data), dữ liệu đã qua tiền xử lý, và các Model Artifacts (file `.tar.gz`) sau khi huấn luyện.
+*   **Amazon SageMaker Processing:** Chạy các script tiền xử lý hình ảnh (`preprocessing.py`).
+*   **Amazon SageMaker Training & HPO:** Quản lý tài nguyên tính toán (EC2 instances) để huấn luyện mô hình (`train.py`) và tìm ra bộ tham số tốt nhất.
+*   **SageMaker Model Registry:** Đăng ký và quản lý phiên bản các mô hình đã được xác duyệt.
+*   **SageMaker Serverless Inference:** Điểm cuối (Endpoint) cung cấp khả năng dự đoán thời gian thực mà không cần quản lý máy chủ.
+*   **AWS Lambda & API Gateway:** Tạo RESTful API nhận hình ảnh từ phía Client, gọi đến SageMaker Endpoint và trả về kết quả chẩn đoán.
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+### 4. Triển khai kỹ thuật (Technical Implementation)
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+Quá trình triển khai được module hóa thành các kịch bản (Pipelines) thực thi tuần tự:
+*   **Data Pipeline:** Thực thi script `run_processing_job.py` để làm sạch, resize và chuẩn hóa ảnh X-quang/CT.
+*   **Training Pipeline:** Thực thi `run_training_job.py` và `run_hpo_job.py` để phân bổ tài nguyên huấn luyện tự động.
+*   **Deployment Pipeline:** Script `repack_and_deploy.py` và `deploy_serverless_endpoint.py` tự động đóng gói mô hình và cập nhật lên Serverless Endpoint mà không gây gián đoạn (Zero downtime).
+*   **Monitoring:** Thu thập và kiểm tra logs hệ thống qua `fetch_logs_v2.py` và `inspect_logs_all.py` trên Amazon CloudWatch.
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+### 5. Lộ trình triển khai (Roadmap & Milestones)
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+*   **Giai đoạn 1:** Phân tích dữ liệu y tế, thiết lập kho lưu trữ S3, xây dựng kịch bản `preprocessing.py` và tạo tập dữ liệu mẫu (`create_toy_dataset.py`).
+*   **Giai đoạn 2:** Phát triển mô hình Deep Learning (`train.py`), thiết lập các job huấn luyện và HPO trên Amazon SageMaker.
+*   **Giai đoạn 3:** Xây dựng MLOps Pipelines (Đăng ký mô hình, đóng gói artifact, khởi tạo Serverless Endpoint).
+*   **Giai đoạn 4:** Thiết lập API Gateway, AWS Lambda kết nối với Endpoint. Kiểm thử toàn trình (End-to-end testing) và đánh giá độ chính xác.
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+### 6. Ước tính ngân sách (Budget Estimation)
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+Kiến trúc ứng dụng Serverless Inference và Managed Training Jobs giúp kiểm soát ngân sách rất hiệu quả. Chi phí chủ yếu phát sinh trong quá trình huấn luyện mô hình.
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+**Chi phí AWS ước tính:**
+*   **Amazon S3:** ~$1.00/tháng (Lưu trữ dataset và model artifacts).
+*   **SageMaker Training Jobs:** Phụ thuộc vào số giờ chạy thực tế của các máy ảo GPU (VD: `ml.g4dn.xlarge`). Ước tính ~$10 - $20 cho giai đoạn phát triển.
+*   **SageMaker Serverless Inference:** Tính phí theo miligiây tính toán và lượng dung lượng RAM cấp phát (Chỉ phát sinh khi gọi API chẩn đoán). ~$1.00 - $3.00/tháng cho môi trường lab.
+*   **API Gateway & AWS Lambda:** Nằm trong AWS Free Tier (Rất rẻ).
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+### 7. Quản trị rủi ro (Risk Management)
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+| Rủi ro (Risk) | Xác suất | Mức độ ảnh hưởng | Chiến lược giảm thiểu (Mitigation Strategy) |
+| :--- | :--- | :--- | :--- |
+| **Model Drift (Mô hình giảm độ chính xác)** | Trung bình | Cao | Thiết lập SageMaker Model Monitor. Xây dựng pipeline tự động tái huấn luyện khi có dữ liệu mới. |
+| **Bảo mật dữ liệu y tế (PHI)** | Thấp | Nghiêm trọng | Mã hóa dữ liệu At-Rest trên S3 (KMS). Đảm bảo giao tiếp API mã hóa In-Transit (TLS/SSL). Tuân thủ nguyên tắc IAM chặt chẽ. |
+| **Thời gian khởi động lạnh (Cold Start) của Endpoint** | Cao | Trung bình | Sử dụng script `warmup_endpoint.py` để giữ endpoint luôn sẵn sàng hoặc Provisioned Concurrency nếu cần độ trễ thấp tuyệt đối. |
+| **Chi phí Training vượt kiểm soát** | Thấp | Trung bình | Thiết lập AWS Budgets, cấu hình `MaxRuntimeInSeconds` cho các Training/HPO Jobs để ngắt tự động. |
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
-
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
-
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+### 8. Kết quả kỳ vọng (Expected Outcomes)
+Hoàn thành một hệ thống chẩn đoán y tế tự động chuẩn Cloud-Native. Dự án không chỉ dừng lại ở một mô hình AI đơn lẻ mà hình thành một **quy trình MLOps hoàn chỉnh**. Kết quả cung cấp một API chẩn đoán phổi có độ sẵn sàng cao, mở ra tiềm năng tích hợp vào các ứng dụng Web/App của các bệnh viện hoặc phòng khám trong thực tế.

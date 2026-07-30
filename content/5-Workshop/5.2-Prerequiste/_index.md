@@ -1,242 +1,88 @@
 ---
-title : "Prerequiste"
-date : 2024-01-01 
-weight : 2 
+title : "Prerequisites"
+date : 2026-06-08 
+weight : 2
 chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-#### IAM permissions
-Add the following IAM permission policy to your user account to deploy and cleanup this workshop.
-```
+To start deploying the **AI Pulmonary Diagnostic Suite** system, we need to prepare the AWS working environment, including granting the necessary IAM permissions and initializing sample data via AWS CloudShell.
+
+In this workshop, we'll use the **N. Virginia (us-east-1)** region.
+
+### 1. Configuring IAM Permissions
+Attach the following IAM permission policy to your AWS User or Role to have sufficient rights to deploy and clean up the MLOps resources used in this workshop.
+
+*(Note: In a real-world environment, you should apply the principle of least privilege. The policy below has been relaxed a bit for the convenience of this hands-on lab).*
+
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
+            "Sid": "MLOpsWorkshopPermissions",
             "Effect": "Allow",
             "Action": [
-                "cloudformation:*",
+                "sagemaker:*",
+                "s3:*",
+                "lambda:*",
+                "apigateway:*",
                 "cloudwatch:*",
-                "ec2:AcceptTransitGatewayPeeringAttachment",
-                "ec2:AcceptTransitGatewayVpcAttachment",
-                "ec2:AllocateAddress",
-                "ec2:AssociateAddress",
-                "ec2:AssociateIamInstanceProfile",
-                "ec2:AssociateRouteTable",
-                "ec2:AssociateSubnetCidrBlock",
-                "ec2:AssociateTransitGatewayRouteTable",
-                "ec2:AssociateVpcCidrBlock",
-                "ec2:AttachInternetGateway",
-                "ec2:AttachNetworkInterface",
-                "ec2:AttachVolume",
-                "ec2:AttachVpnGateway",
-                "ec2:AuthorizeSecurityGroupEgress",
-                "ec2:AuthorizeSecurityGroupIngress",
-                "ec2:CreateClientVpnEndpoint",
-                "ec2:CreateClientVpnRoute",
-                "ec2:CreateCustomerGateway",
-                "ec2:CreateDhcpOptions",
-                "ec2:CreateFlowLogs",
-                "ec2:CreateInternetGateway",
-                "ec2:CreateLaunchTemplate",
-                "ec2:CreateNetworkAcl",
-                "ec2:CreateNetworkInterface",
-                "ec2:CreateNetworkInterfacePermission",
-                "ec2:CreateRoute",
-                "ec2:CreateRouteTable",
-                "ec2:CreateSecurityGroup",
-                "ec2:CreateSubnet",
-                "ec2:CreateSubnetCidrReservation",
-                "ec2:CreateTags",
-                "ec2:CreateTransitGateway",
-                "ec2:CreateTransitGatewayPeeringAttachment",
-                "ec2:CreateTransitGatewayPrefixListReference",
-                "ec2:CreateTransitGatewayRoute",
-                "ec2:CreateTransitGatewayRouteTable",
-                "ec2:CreateTransitGatewayVpcAttachment",
-                "ec2:CreateVpc",
-                "ec2:CreateVpcEndpoint",
-                "ec2:CreateVpcEndpointConnectionNotification",
-                "ec2:CreateVpcEndpointServiceConfiguration",
-                "ec2:CreateVpnConnection",
-                "ec2:CreateVpnConnectionRoute",
-                "ec2:CreateVpnGateway",
-                "ec2:DeleteCustomerGateway",
-                "ec2:DeleteFlowLogs",
-                "ec2:DeleteInternetGateway",
-                "ec2:DeleteNetworkInterface",
-                "ec2:DeleteNetworkInterfacePermission",
-                "ec2:DeleteRoute",
-                "ec2:DeleteRouteTable",
-                "ec2:DeleteSecurityGroup",
-                "ec2:DeleteSubnet",
-                "ec2:DeleteSubnetCidrReservation",
-                "ec2:DeleteTags",
-                "ec2:DeleteTransitGateway",
-                "ec2:DeleteTransitGatewayPeeringAttachment",
-                "ec2:DeleteTransitGatewayPrefixListReference",
-                "ec2:DeleteTransitGatewayRoute",
-                "ec2:DeleteTransitGatewayRouteTable",
-                "ec2:DeleteTransitGatewayVpcAttachment",
-                "ec2:DeleteVpc",
-                "ec2:DeleteVpcEndpoints",
-                "ec2:DeleteVpcEndpointServiceConfigurations",
-                "ec2:DeleteVpnConnection",
-                "ec2:DeleteVpnConnectionRoute",
-                "ec2:Describe*",
-                "ec2:DetachInternetGateway",
-                "ec2:DisassociateAddress",
-                "ec2:DisassociateRouteTable",
-                "ec2:GetLaunchTemplateData",
-                "ec2:GetTransitGatewayAttachmentPropagations",
-                "ec2:ModifyInstanceAttribute",
-                "ec2:ModifySecurityGroupRules",
-                "ec2:ModifyTransitGatewayVpcAttachment",
-                "ec2:ModifyVpcAttribute",
-                "ec2:ModifyVpcEndpoint",
-                "ec2:ReleaseAddress",
-                "ec2:ReplaceRoute",
-                "ec2:RevokeSecurityGroupEgress",
-                "ec2:RevokeSecurityGroupIngress",
-                "ec2:RunInstances",
-                "ec2:StartInstances",
-                "ec2:StopInstances",
-                "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
-                "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
-                "iam:AddRoleToInstanceProfile",
-                "iam:AttachRolePolicy",
-                "iam:CreateInstanceProfile",
-                "iam:CreatePolicy",
-                "iam:CreateRole",
-                "iam:DeleteInstanceProfile",
-                "iam:DeletePolicy",
-                "iam:DeleteRole",
-                "iam:DeleteRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:GetInstanceProfile",
-                "iam:GetPolicy",
-                "iam:GetRole",
-                "iam:GetRolePolicy",
-                "iam:ListPolicyVersions",
-                "iam:ListRoles",
+                "logs:*",
                 "iam:PassRole",
-                "iam:PutRolePolicy",
-                "iam:RemoveRoleFromInstanceProfile",
-                "lambda:CreateFunction",
-                "lambda:DeleteFunction",
-                "lambda:DeleteLayerVersion",
-                "lambda:GetFunction",
-                "lambda:GetLayerVersion",
-                "lambda:InvokeFunction",
-                "lambda:PublishLayerVersion",
-                "logs:CreateLogGroup",
-                "logs:DeleteLogGroup",
-                "logs:DescribeLogGroups",
-                "logs:PutRetentionPolicy",
-                "route53:ChangeTagsForResource",
-                "route53:CreateHealthCheck",
-                "route53:CreateHostedZone",
-                "route53:CreateTrafficPolicy",
-                "route53:DeleteHostedZone",
-                "route53:DisassociateVPCFromHostedZone",
-                "route53:GetHostedZone",
-                "route53:ListHostedZones",
-                "route53domains:ListDomains",
-                "route53domains:ListOperations",
-                "route53domains:ListTagsForDomain",
-                "route53resolver:AssociateResolverEndpointIpAddress",
-                "route53resolver:AssociateResolverRule",
-                "route53resolver:CreateResolverEndpoint",
-                "route53resolver:CreateResolverRule",
-                "route53resolver:DeleteResolverEndpoint",
-                "route53resolver:DeleteResolverRule",
-                "route53resolver:DisassociateResolverEndpointIpAddress",
-                "route53resolver:DisassociateResolverRule",
-                "route53resolver:GetResolverEndpoint",
-                "route53resolver:GetResolverRule",
-                "route53resolver:ListResolverEndpointIpAddresses",
-                "route53resolver:ListResolverEndpoints",
-                "route53resolver:ListResolverRuleAssociations",
-                "route53resolver:ListResolverRules",
-                "route53resolver:ListTagsForResource",
-                "route53resolver:UpdateResolverEndpoint",
-                "route53resolver:UpdateResolverRule",
-                "s3:AbortMultipartUpload",
-                "s3:CreateBucket",
-                "s3:DeleteBucket",
-                "s3:DeleteObject",
-                "s3:GetAccountPublicAccessBlock",
-                "s3:GetBucketAcl",
-                "s3:GetBucketOwnershipControls",
-                "s3:GetBucketPolicy",
-                "s3:GetBucketPolicyStatus",
-                "s3:GetBucketPublicAccessBlock",
-                "s3:GetObject",
-                "s3:GetObjectVersion",
-                "s3:GetBucketVersioning",
-                "s3:ListAccessPoints",
-                "s3:ListAccessPointsForObjectLambda",
-                "s3:ListAllMyBuckets",
-                "s3:ListBucket",
-                "s3:ListBucketMultipartUploads",
-                "s3:ListBucketVersions",
-                "s3:ListJobs",
-                "s3:ListMultipartUploadParts",
-                "s3:ListMultiRegionAccessPoints",
-                "s3:ListStorageLensConfigurations",
-                "s3:PutAccountPublicAccessBlock",
-                "s3:PutBucketAcl",
-                "s3:PutBucketPolicy",
-                "s3:PutBucketPublicAccessBlock",
-                "s3:PutObject",
-                "secretsmanager:CreateSecret",
-                "secretsmanager:DeleteSecret",
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:ListSecrets",
-                "secretsmanager:ListSecretVersionIds",
-                "secretsmanager:PutResourcePolicy",
-                "secretsmanager:TagResource",
-                "secretsmanager:UpdateSecret",
-                "sns:ListTopics",
-                "ssm:DescribeInstanceProperties",
-                "ssm:DescribeSessions",
-                "ssm:GetConnectionStatus",
-                "ssm:GetParameters",
-                "ssm:ListAssociations",
-                "ssm:ResumeSession",
-                "ssm:StartSession",
-                "ssm:TerminateSession"
+                "iam:CreateRole",
+                "iam:AttachRolePolicy",
+                "iam:PutRolePolicy"
             ],
             "Resource": "*"
         }
     ]
 }
-
 ```
 
-#### Provision resources using CloudFormation
+After attaching this policy, you can verify your permissions by going to the **IAM Console** -> **Users** -> selecting your user -> **Permissions**. You should see the new policy attached.
 
-In this lab, we will use **N.Virginia region (us-east-1)**.
+![Checking IAM Permissions](/images/5-Workshop/5.2-Prerequisite/iam-policy.png)
 
-To prepare the workshop environment, deploy this **CloudFormation Template** (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Accept all of the defaults when deploying the template. 
+### 2. Setting Up a Working Environment with AWS CloudShell
+Instead of installing AWS CLI and Python on your personal machine, we'll use **AWS CloudShell** — a browser-based terminal environment that AWS has already configured for us.
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack1.png)
+**Step 1:** From the AWS Management Console, click the **CloudShell** icon in the top-right corner.
 
-+ Tick 2 acknowledgement boxes
-+ Choose **Create stack**
+![Opening AWS CloudShell](/images/5-Workshop/5.2-Prerequisite/open-cloudshell.png)
 
-![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
+**Step 2:** Wait about 1-2 minutes for CloudShell to initialize the environment. Once the command prompt appears, click **Actions** -> **Upload file** in the top-right corner of CloudShell and upload the project's compressed source code (for example: `AI-Pulmonary-Diagnostic-Suite.zip`).
 
-The **ClouddFormation** deployment requires about 15 minutes to complete.
+**Step 3:** Unzip the source code and move into the project folder (since this is a project I'd already built beforehand but hadn't yet deployed to AWS, we need to unzip it and move into the project directory to continue the deployment):
 
-![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
+```bash
+unzip AI-Pulmonary-Diagnostic-Suite.zip
+cd AI-Pulmonary-Diagnostic-Suite-main
+```
+**Step 4:** Install the Python libraries needed for preprocessing and MLOps from the requirements.txt file:
 
-+ **2 VPCs** have been created
+```bash
+pip install -r requirements.txt
+```
+Once installation finishes, you'll see:
 
-![vpcs](/images/5-Workshop/5.2-Prerequisite/vpcs.png)
+![Installing Python libraries](/images/5-Workshop/5.2-Prerequisite/install-reqs.png)
 
-+ **3 EC2s** have been created
+### 3. Initializing the Data Lake and Sample (Toy) Data
+To train the lung diagnosis model, we need X-ray/CT images. The project already includes a script to automatically create an Amazon S3 bucket and upload sample data to the cloud.
 
-![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+Run the following command in CloudShell:
+
+```bash
+python src/data/create_toy_dataset.py
+```
+
+Once the script finishes running, the system will automatically create the bucket and upload the medical image folders (for example: NORMAL, PNEUMONIA).
+
+To confirm, you can visit the Amazon S3 console. You'll see a newly created bucket containing the images used for the next model training step.
+
+![Checking the S3 Bucket](/images/5-Workshop/5.2-Prerequisite/create-toy-dataset.png)
+
+At this point, your environment is fully ready!
+
+*The final result of the preparation step is going from a dataset of 5,800 images down to a 120-image dataset (toy dataset) to make it easier to deploy the model within the workshop. You can verify this by opening the newly created S3 bucket and viewing the subfolders containing the images.*

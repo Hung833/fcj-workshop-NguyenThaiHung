@@ -1,44 +1,44 @@
 ---
 title: "Events Participated"
-date: 2024-01-01
+date: 2026-07-30
 weight: 4
 chapter: false
 pre: " <b> 4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** for your report, including this warning.
-{{% /notice %}}
+During my internship, I had the opportunity to participate in two events. Each event provided a memorable experience packed with fresh, practical, and highly beneficial technical insights, alongside wonderful gifts and great moments.
 
-> In this section, you should list and describe in detail the events you have participated in during your internship or work experience.  
-> 
-> Each event should be presented in the format Event 1, Event 2, Event 3…, along with the following details:
-> * Event name
-> * Date and time
-> * Location (if applicable)
-> * Your role in the event (attendee, event support, speaker, etc.)
-> * A brief description of the event’s content and main activities
-> * Outcomes or value gained (lessons learned, new skills, contribution to the team/project)
-> * This listing helps demonstrate your actual participation as well as the soft skills and experience you have gained from each event.
+### [Event 1](4.1-Event1/)
+&emsp;**Event Name:** Multiplayer Game Networking Workshop
 
-During my internship, I participated in two events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with gifts and wonderful moments.
+&emsp;**Date:** 06/06/2026
 
-### [Event 1](4.1-Event1/)  
-&emsp;**Event Name:** GenAI-powered App-DB Modernization workshop  
+&emsp;**Location:** 26th Floor, Bitexco Financial Tower, 2 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City
 
-&emsp;**Date & Time:** 09:00, August 13, 2025  
+&emsp;**Role:** Attendee
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
+&emsp;**Summary of Activities:**  
+The event delivered in-depth technical insights into networking protocols for multiplayer gaming (HTTP Polling, UDP, WebSocket). The speakers guided participants through the complete process of building a Serverless WebSocket system on AWS (utilizing API Gateway, Lambda, DynamoDB, and CloudWatch), paired with a live client networking demo in Godot Engine. Additionally, the event introduced containerization strategies using Docker for application packaging.
 
-&emsp;**Role:** Attendee  
+&emsp;**Key Takeaways & Value Gained:**  
+* **Technical Knowledge:** Mastered designing Serverless networking architectures for gaming, non-relational data modeling in DynamoDB, and writing Dockerfiles to package applications into isolated Sandbox environments.
+* **Systems Mindset:** Deeply understood system design trade-offs between performance, reliability, and operational cost.
+* **Practical Experience:** Developed a strong awareness of Cloud cost optimization, learned exception handling strategies (sudden disconnections), and outlined roadmaps to apply these techniques to personal and academic projects.
 
----
 
-### [Event 2](4.2-Event2/)  
-&emsp;**Event Name:** GenAI-powered App-DB Modernization workshop  
+### [Event 2](4.2-Event2/)
+&emsp;**Event Name:** Cloud Architect Competition Finals & Tech Talk
 
-&emsp;**Date & Time:** 09:00, August 13, 2025  
+&emsp;**Date:** 06/11/2026
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
+&emsp;**Location:** 26th Floor, Bitexco Financial Tower, 2 Hai Trieu Street, Sai Gon Ward, Ho Chi Minh City
 
-&emsp;**Role:** Attendee  
+&emsp;**Role:** Attendee
+
+&emsp;**Summary of Activities:**  
+The event consisted of two main activities: The finals of the Cloud Architect competition—featuring scenario-based multiple-choice challenges on AWS Cloud architecture—and an in-depth Tech Talk series led by industry experts. Key topics covered included applying AI/Multi-agent frameworks in Cloud Security (DevSecOps), enterprise SLA governance & monitoring using CloudWatch and SNS, and an exam preparation roadmap for the AWS CLF-C02 certification.
+
+&emsp;**Key Takeaways & Value Gained:**  
+* **Domain Knowledge:** Understood how to orchestrate advanced AWS services for enterprise-scale infrastructure, explored security automation trends with Generative AI, and realized that the ultimate goal of monitoring is guaranteeing customer journey continuity in compliance with SLA commitments.
+* **Practical Skills:** Learned to construct custom CloudWatch Dashboards, configure Metric Alarms, and set up database disconnection alerts via SNS. Acquired effective process-of-elimination and keyword mapping techniques to confidently pursue the AWS Cloud Practitioner certification.
+* **Personal Growth:** Cultivated observational and critical thinking skills when analyzing real-world architectural scenarios, clearly shaping my career development path in Cloud and DevOps engineering.

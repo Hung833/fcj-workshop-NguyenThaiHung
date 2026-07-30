@@ -1,125 +1,106 @@
 ---
 title: "Event 1"
-date: 2024-01-01
+date: 2026-06-06
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# BÀI THU HOẠCH "MULTIPLAYER GAME NETWORKING WORKSHOP"
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+## Mục Đích Của Sự Kiện
+* **Chia sẻ các giao thức kiến trúc mạng** trong phát triển game nhiều người chơi (Multiplayer Game).
+* **Giới thiệu quy trình** xây dựng hệ thống WebSocket Serverless trên nền tảng AWS.
+* **Hướng dẫn lập trình mạng** phía Client sử dụng Game Engine Godot.
+* **Giới thiệu giải pháp** đóng gói ứng dụng bằng công nghệ Containerization (Docker).
 
-### Mục Đích Của Sự Kiện
+---
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+## Nội Dung Nổi Bật
 
-### Danh Sách Diễn Giả
+### 1. Phân tích các giao thức mạng trong game Multiplayer
+* **HTTP Polling:** 
+  * Cơ chế: Client gửi request liên tục để check update từ Server.
+  * Nhược điểm: Thời gian phản hồi lâu (High Latency), gây overhead hệ thống.
+  * Ứng dụng: Chỉ dùng cho các tính năng đơn giản như Login hoặc Leaderboard.
+* **UDP (User Datagram Protocol):**
+  * Cơ chế: Giao thức truyền gói tin nhanh, chấp nhận mất gói dữ liệu (Packet loss) để đổi lấy độ trễ cực thấp.
+  * Ứng dụng: Tối ưu cho game tốc độ cao (FPS, MOBA, Đua xe).
+  * Trong Godot: Được nâng cấp thành thư viện ENet.
+* **WebSocket:**
+  * Cơ chế: Giao thức kết nối hai chiều liên tục, đảm bảo tính Real-time tốt hơn HTTP Polling và kiểm soát dữ liệu tin cậy hơn.
+  * Ứng dụng: Giải pháp tối ưu được chọn để Demo cho game Kéo-Búa-Bao.
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+### 2. Thiết lập WebSocket Serverless trên AWS
+Hệ thống xử lý logic mạng được xây dựng qua 4 dịch vụ cốt lõi:
+* **API Gateway:** Điều hướng kết nối qua việc config các tuyến (Routes): `$connect`, `$disconnect` và `$default` (sử dụng định dạng JSON dựa trên `request.body.action`).
+* **Lambda Function:** Xử lý logic nghiệp vụ cho từng sự kiện kết nối/ngắt kết nối và truyền nhận message.
+* **DynamoDB Table:** Lưu trữ dữ liệu trận đấu và trạng thái người chơi với 5 cột chính: `Connection ID`, `Status` (waiting/playing), `Opponent ID`, `Choice` (kéo/búa/bao) và `Create At` (timestamp).
+* **CloudWatch:** Tự động ghi lại log hệ thống giúp theo dõi luồng dữ liệu và phục vụ debug.
 
-### Nội Dung Nổi Bật
+### 3. Lập trình Client trên Godot Engine
+Đảm nhận 4 nhiệm vụ chính để duy trì kết nối game:
+* **Khởi tạo:** Thiết lập kết nối đến URL của API Gateway thông qua đối tượng `WebSocketPeer`.
+* **Kiểm tra tin nhắn (Message Polling):** Liên tục kiểm tra dữ liệu trả về từ server giống như check hộp thư nhằm tránh làm quá tải hệ thống.
+* **Quản lý kết nối (State Management):** Theo dõi 4 trạng thái của WebSocket gồm `Connecting`, `Open`, `Closing` và `Closed` để đưa ra yêu cầu tìm trận (Matchmaking) phù hợp.
+* **Xử lý dữ liệu:** Nhận diện gói tin JSON từ Server gửi về để xử lý kết quả trò chơi.
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+### 4. Ứng dụng công nghệ Containerization (Docker)
+* **Giải quyết xung đột môi trường:** Khắc phục triệt để tình trạng lỗi bất đồng bộ cấu hình ("code chạy được trên máy tôi nhưng lỗi trên máy bạn").
+* **So sánh Virtual Machine vs Container:** Máy ảo (VM) chạy rất nặng và tốn tài nguyên vì phải boot hệ điều hành (OS) riêng; Container nhẹ hơn hẳn nhờ dùng chung OS thông qua Container Engine.
+* **Cơ chế Docker Cache/Layer:** Build ảnh theo cơ chế xếp tầng giúp lưu lại lịch sử các bước trước đó, chỉ build lại từ layer có sự thay đổi $
+ightarrow$ Tối ưu hóa thời gian đóng gói.
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+---
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+## Những Gì Học Được
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+### Tư Duy Thiết Kế
+* **Kịch bản lỗi thực tế:** Hiểu cách xử lý ngoại lệ ngắt kết nối đột ngột (lỗi rớt mạng bất khả kháng) để tránh tình trạng "Ghost Connection" trong DynamoDB, khiến người chơi mới bị ghép cặp lỗi.
+* **Tối ưu hóa hiệu năng:** Nhận ra việc sử dụng lệnh `Scan Table` trên DynamoDB để tìm trận sẽ gây thắt nút cổ chai (Bottleneck) khi lượng user tăng cao, từ đó cần hướng tới giải pháp quản lý tập trung chuyên biệt.
+* **Quản lý tài nguyên hệ thống:** Hiểu đặc tính Stateless của Lambda để thiết kế cấu trúc dữ liệu lưu trữ hợp lý khi cần làm các tính năng khôi phục kết nối (Reconnect).
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+### Kiến Trúc Kỹ Thuật
+* **Lập trình mạng chuyên sâu:** Nắm vững cấu trúc truyền nhận gói tin JSON và cách viết mã nguồn đồng bộ hóa dữ liệu giữa Game Client và Cloud Server.
+* **Ứng dụng thực tế của Docker:** Biết cách viết một `Dockerfile` hoàn chỉnh (các lệnh `FROM`, `RUN`, `COPY`, `EXPOSE`...) và hiểu bản chất lệnh `docker run -it` để tạo môi trường sandbox cô lập hoàn toàn, hỗ trợ test bảo mật và cô lập mã độc bảo vệ máy chủ.
 
-#### Domain-Driven Design (DDD)
+### Định Hướng Tương Lai
+* **AWS GameLift adoption:** Tiếp cận tư duy host server game trên các cụm EC2 chuyên dụng và tích hợp các thuật toán ghép trận tự động nâng cao (Matchmaking) cho các dự án quy mô lớn.
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+---
 
-#### Event-Driven Architecture
+## Ứng Dụng Vào Công Việc
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+1. **Áp dụng cơ chế WebSocket:** Cải tiến các phần giao tiếp mạng real-time cho các dự án cá nhân hoặc đồ án môn học thay vì dùng HTTP truyền thống.
+2. **Xây dựng cụm Serverless trên AWS:** Thử nghiệm triển khai kết hợp API Gateway và Lambda cho các ứng dụng có luồng dữ liệu bất đồng bộ.
+3. **Chuẩn hóa quy trình đóng gói ứng dụng:** Sử dụng Docker để đóng gói sản phẩm, tạo môi trường chạy đồng nhất cho tất cả các thành viên trong nhóm dự án, tối ưu hóa workflow phát triển.
+4. **Ứng dụng Sandbox Container:** Ứng dụng cơ chế cô lập ứng dụng của Docker để hỗ trợ quá trình kiểm thử phần mềm (Testing) và kiểm tra an ninh (Security Check) an toàn hơn.
 
-#### Compute Evolution
+---
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+## Bài Học Rút Ra & Cảm Nhận
 
-#### Amazon Q Developer
+Tham gia buổi thuyết trình là một trải nghiệm vô cùng quý giá, mang lại cho tôi những kiến thức chuyên môn sâu sắc về mạng máy tính ứng dụng trong ngành Game và tư duy DevOps hiện đại.
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+### 1. Học hỏi từ những nội dung chia sẻ thực tế
+* Diễn giả đã chia sẻ những bài học xương máu về lỗi hệ thống, tư duy thiết kế và cách quản lý hạ tầng mạng sao cho tối ưu về cả hiệu năng lẫn chi phí khi vận hành thực tế.
+* Qua các phần phân tích chuyên sâu về UDP, WebSocket và cơ chế lưu trữ của DynamoDB, tôi hiểu rõ hơn cách xử lý bất đồng bộ dữ liệu trong một hệ thống phân tán.
 
-### Những Gì Học Được
+### 2. Trải nghiệm kỹ thuật thực tế
+* Theo dõi trực tiếp phiên demo kết nối thực tế giữa Game Client (Godot) và Server (AWS), quan sát trực quan luồng đi của dữ liệu từ lúc Client gửi request cho đến khi DynamoDB cập nhật trạng thái.
+* Nắm bắt được cách debug, theo dõi hệ thống thông qua CloudWatch và các lệnh tương tác sâu bên trong Docker container thông qua cửa sổ terminal.
 
-#### Tư Duy Thiết Kế
+### 3. Ứng dụng tư duy công nghệ hiện đại
+* Hiểu rõ tầm quan trọng của việc ảo hóa và đóng gói ứng dụng bằng Docker để giải phóng lập trình viên khỏi gánh nặng bất đồng bộ môi trường.
+* Biết cách ứng dụng Docker Container như một môi trường "Sandbox" an toàn, linh hoạt để phục vụ cho các mục đích kiểm thử và bảo mật hệ thống.
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+### 4. Kết luận & Bài học cốt lõi
+* **Mọi thiết kế hệ thống luôn phải đánh đổi (Trade-offs)** giữa hiệu năng, độ tin cậy và chi phí. Không có giao thức hay công nghệ nào là hoàn hảo nhất, chỉ có công nghệ phù hợp nhất với bài toán của doanh nghiệp.
+* **Ý thức tối ưu chi phí Cloud:** Khi làm việc với các hệ thống Cloud, luôn phải có ý thức kiểm tra và tắt các máy chủ/dịch vụ (như cụm EC2, Database) khi không còn sử dụng để tránh phát sinh chi phí ngoài ý muốn trong quá trình phát triển (Bài học hóa đơn Cloud).
 
-#### Kiến Trúc Kỹ Thuật
+> **Tổng kết:** Sự kiện không chỉ cung cấp kiến thức kỹ thuật mạng chuyên sâu mà còn giúp tôi thay đổi cách tư duy về thiết kế kiến trúc hệ thống, tối ưu hóa hạ tầng Cloud và chuẩn hóa quy trình đóng gói phần mềm khi tham gia vào các dự án công nghệ thực tế.
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
-
-#### Chiến Lược Hiện Đại Hóa
-
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
-
-### Ứng Dụng Vào Công Việc
-
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
-
-### Trải nghiệm trong event
-
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
-
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
-
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
-
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
-
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
-
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+![Event1](/images/4-EventParticipated/event_6-6-26/1.png)
+![Event1](/images/4-EventParticipated/event_6-6-26/2.png)
+![Event1](/images/4-EventParticipated/event_6-6-26/3.png)
+![Event1](/images/4-EventParticipated/event_6-6-26/4.png)

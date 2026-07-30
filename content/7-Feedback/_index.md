@@ -1,47 +1,35 @@
 ---
-title: "Sharing and Feedback"
-date: 2024-01-01
+title: "Perspectives & Feedback"
+date: 2026-07-30
 weight: 7
 chapter: false
 pre: " <b> 7. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+### General Evaluation
 
-> Here, you can freely share your personal opinions about your experience participating in the First Cloud AI Journey program. This will help the FCAJ team improve any shortcomings based on the following aspects:
+**1. Working Environment & Workspace**  
+The working environment is highly professional, dynamic, and emphasizes proactiveness. Colleagues are consistently friendly and create favorable conditions for interns to integrate quickly with the team's pace. However, due to the hybrid nature of the work, I propose introducing short sync-up sessions or periodic internal tech-talks to facilitate knowledge sharing and team bonding.  
+Office registration is quite challenging. With a large number of interns, on-site capacity is often insufficient. I noticed that 2x session credits were only awarded for Speaking registrations toward the end of the internship. Therefore, I hope the team can support Speaking sessions on weekdays—holding Speaking in the morning and dedicated group project research time in the afternoon. Anyone registering for a Speaking session should receive one credit for Speaking plus one credit for the afternoon session, rather than waiting until the end of the internship term to offer 2x credits for Speaking participants.
 
-### Overall Evaluation
+**2. Mentorship & Support Team**  
+Mentors do not merely assign tasks; they guide problem-solving mindsets exceptionally well. Instead of step-by-step handholding as in other companies, at AWS, I was always encouraged to research documentation independently and propose solutions first. If technical issues persisted, I could ask for help in the WhatsApp group. Team members responded enthusiastically and promptly, ensuring interns never had to wait long.
 
-**1. Working Environment**  
-The working environment is very friendly and open. FCAJ members are always willing to help whenever I encounter difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus better. However, I think it would be nice to have more social gatherings or team bonding activities to strengthen relationships.
+**3. Alignment with Academic Background**  
+Project tasks closely aligned with the foundational knowledge I learned at university. Moreover, applying these concepts to a real-world system required me to continuously update and expand into new domains (such as system design principles and Serverless architecture), effectively bridging the gap between theory and practice.
 
-**2. Support from Mentor / Team Admin**  
-The mentor provides very detailed guidance, explains clearly when I don’t understand, and always encourages me to ask questions. The admin team supports administrative tasks, provides necessary documents, and creates favorable conditions for me to work effectively. I especially appreciate that the mentor allows me to try and solve problems myself instead of just giving the answer.
+**4. Key Learnings & Skill Acquisition**  
+Through direct hands-on project experience, I significantly enhanced my programming skills, debugging capabilities, and familiarity with Agile workflows. Beyond technical hard skills, acquiring valuable soft skills—such as time management, progress reporting, and meticulous technical documentation—has provided me with invaluable assets for the future.
 
-**3. Relevance of Work to Academic Major**  
-The tasks I was assigned align well with the knowledge I learned at university, while also introducing me to new areas I had never encountered before. This allowed me to both strengthen my foundational knowledge and gain practical skills.
+**5. Corporate Culture & Team Spirit**  
+Teamwork spirit was distinctly evident. Even as an intern, my contributions and ideas were always heard and respected. During crunch phases to accelerate project timelines, everyone cross-supported each other regardless of seniority, fostering a positive and cohesive work culture.
 
-**4. Learning & Skill Development Opportunities**  
-During the internship, I learned many new skills such as using project management tools, teamwork skills, and professional communication in a corporate environment. The mentor also shared valuable real-world experiences that helped me better plan my career path.
+**6. Intern Benefits & Support Policies**  
+The company's intern support policies are very fair. Work flexibility (evaluated based on result-oriented outcomes) and opportunities to attend weekly Saturday events were major highlights. These events deepened my understanding of industry practices outside academia and introduced me to new concepts I had never encountered before.
 
-**5. Company Culture & Team Spirit**  
-The company culture is very positive: everyone respects each other, works seriously but still keeps things enjoyable. When there are urgent projects, everyone works together and supports one another regardless of their position. This made me feel like a real part of the team, even as an intern.
+### Personal Reflections
+- **What I appreciated most** during this internship was exposure to a professional enterprise environment like AWS Cloud, along with valuable career insights shared by experienced professionals during weekly events.  
+- I am **more than willing to recommend** this internship program to peers in the same major. The sole reason is that this internship is well worth experiencing once, as the knowledge gained exceeded all expectations.  
 
-**6. Internship Policies / Benefits**  
-The company provides an internship allowance and offers flexible working hours when needed. In addition, having the opportunity to join internal training sessions is a big plus.
-
----
-
-### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- What do you think the company **should improve** for future interns?  
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
-
----
-
-### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- Would you like to continue this program in the future?  
-- Any other comments (free sharing):
+### Recommendations & Future Direction
+- If given the opportunity to commit long-term or return to work at the company, I would be more than ready to do so.

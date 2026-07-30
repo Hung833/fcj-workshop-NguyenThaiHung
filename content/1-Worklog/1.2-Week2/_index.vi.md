@@ -1,24 +1,24 @@
 ---
-title: "Worklog Tuần 2"
+title: "Tuần 2"
 date: 2026-06-08
 weight: 2
 chapter: false
 pre: " <b> 1.2. </b> "
 ---
 
-### Mục tiêu tuần 2:
-* Xử lý lại data. Data gốc lớn quá sẽ tốn tiền Cloud, nên nhóm quyết định tạo một tập "Toy Dataset" nhỏ gọn.
-* Lên ý tưởng lại kiến trúc hệ thống sang dạng Serverless để đỡ tốn tiền duy trì server.
+### Mục tiêu tuần 2
+* Tạo tập data nhỏ (Toy Dataset) để train thử nghiệm cho tiết kiệm tiền AWS.
+* Hoàn thành bài Blog công nghệ đầu tiên nộp lên hệ thống.
 
-### Các công việc triển khai:
-| Thứ | Công việc | Hoàn thành |
-| --- | --- | --- |
-| 2 (08/06) | Chốt kiến trúc mới: Dùng API Gateway + Lambda gọi qua SageMaker thay vì load file model thẳng trên app. | 08/06/2026 |
-| 3 (09/06) | Chia việc: Một bạn viết code Python `create_toy_dataset.py` lấy random 120 ảnh X-Quang, bạn kia lo tạo bucket S3. | 09/06/2026 |
-| 4 (10/06) | Chạy script chia data (100 ảnh Train, 20 ảnh Test/Val chia đều cho 2 class). | 10/06/2026 |
-| 5 (11/06) | Dùng lệnh AWS CLI tạo S3 bucket `fcaj-pulmonary-suite-data-hung2026`. | 11/06/2026 |
-| 6 (12/06) | Push toàn bộ Toy Dataset lên S3. Nhóm bắt đầu viết bài Blog 1 nộp lên hệ thống. | 12/06/2026 |
+### Tiến độ công việc
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Nhóm chốt kiến trúc: Chuyển sang làm Serverless toàn bộ (API Gateway + Lambda + SageMaker) để tối ưu chi phí. | 08/06/2026 | 08/06/2026 | [AWS Serverless Architecture](https://aws.amazon.com/serverless/) |
+| 3 | - Mình nhận task code Python script `create_toy_dataset.py` để random lấy 120 ảnh X-Quang phổi cân bằng các class. | 09/06/2026 | 09/06/2026 | [Python Pandas Docs](https://pandas.pydata.org/docs/) |
+| 4 | - Run script chia data, check lại folder Train/Val.<br>- Bạn cùng nhóm tạo S3 bucket. | 10/06/2026 | 10/06/2026 | [Amazon S3 User Guide](https://docs.aws.amazon.com/AmazonS3/latest/userguide/) |
+| 5 | - Mình dùng AWS CLI để sync (push) toàn bộ Toy Dataset lên S3 bucket của dự án. | 11/06/2026 | 11/06/2026 | [AWS CLI S3 Commands](https://docs.aws.amazon.com/cli/latest/reference/s3/) |
+| 6 | - Cả nhóm viết và format bài Blog số 1 về "Kiến trúc Serverless MLOps" để submit. | 12/06/2026 | 12/06/2026 | [Quy định FCAJ Blog](https://cloudjourney.awsstudygroup.com/) |
 
-### Kết quả đạt được:
-* Có sẵn tập data rút gọn trên S3. Từ giờ training chỉ mất 1-2 phút, giúp nhóm test code thoải mái mà chi phí chưa tới $0.50.
-* Chốt xong bản thiết kế hệ thống Serverless và nộp bài Blog 1 đúng hạn.
+### Thành tựu đạt được
+* Có sẵn tập data thu gọn trên S3. Việc này giúp việc test code sau này chỉ tốn 1-2 phút, đảm bảo FinOps.
+* Bài Blog 1 hoàn thành đúng deadline.

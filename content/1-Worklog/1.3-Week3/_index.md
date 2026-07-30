@@ -1,22 +1,22 @@
 ---
-title: "Week 3 Worklog"
+title: "Week 3"
 date: 2026-06-15
 weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
 
-### Week 3 Objectives:
-* Migrate local image processing code to run on Amazon SageMaker Processing Jobs.
+### Week 3 Objectives
+* Migrate data preprocessing code (resize, normalize) to run automatically on Amazon SageMaker Processing Jobs.
 
-### Implemented Tasks:
-| Day | Task | Completion Date |
-| --- | --- | --- |
-| Mon (06/15) | Consolidated image resizing and color normalization logic into a standalone `preprocessing.py` file. | 06/15/2026 |
-| Tue (06/16) | Created an IAM Role granting SageMaker read/write permissions to the project's S3 bucket. Provisioned SageMaker Studio. | 06/16/2026 |
-| Wed (06/17) | Scripted the Processing Job execution sequence. Selected `ml.m5.xlarge` instance type for cost-effective and adequate performance. | 06/17/2026 |
-| Thu (06/18) | Executed test Job runs. Monitored AWS Console to verify if data was correctly partitioned into `/train` and `/test` folders on S3. | 06/18/2026 |
-| Fri (06/19) | Reviewed AWS Cost Explorer to ensure Job execution stayed strictly within budget limits. Drafted outline for Blog Post 2. | 06/19/2026 |
+### Task Progress
+| Day | Task | Start Date | Completion Date | Reference Sources |
+| --- | --- | --- | --- | --- |
+| Mon | - Refactored image processing functions from legacy Jupyter Notebooks into a standalone `preprocessing.py` file. | 06/15/2026 | 06/15/2026 | [Scikit-image Docs](https://scikit-image.org/docs/stable/) |
+| Tue | - Configured SageMaker IAM Role with permissions to read images from S3 bucket.<br>- Initialized SageMaker Studio to test environment. | 06/16/2026 | 06/16/2026 | [SageMaker Execution Roles](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html) |
+| Wed | - Authored SageMaker Processing Job execution script, configured to use a cost-effective `ml.m5.xlarge` instance. | 06/17/2026 | 06/17/2026 | [SageMaker Python SDK](https://sagemaker.readthedocs.io/en/stable/) |
+| Thu | - Executed Processing Job. Monitored CloudWatch logs and verified processed dataset directory structures in S3. | 06/18/2026 | 06/18/2026 | [Amazon CloudWatch Logs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/) |
+| Fri | - Audited AWS Cost Explorer with the team to analyze yesterday's Job execution costs.<br>- Drafted outline for Blog 2. | 06/19/2026 | 06/19/2026 | [AWS Billing Console](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/) |
 
-### Key Achievements:
-* Completely eliminated the need for local data preprocessing. SageMaker automatically pulled images from S3, normalized them, and pushed clean output artifacts back to S3 within 3 minutes.
+### Key Achievements
+* Successfully migrated data preparation pipeline to the Cloud. SageMaker fetches, processes, and stores data back to S3 in under 3 minutes.

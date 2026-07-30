@@ -1,33 +1,30 @@
 ---
 title: "Workshop"
-date: 2024-01-01
+date: 2026-07-30
 weight: 5
 chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
+# Triển khai hệ thống AI chẩn đoán bệnh lý phổi với kiến trúc Serverless MLOps
 
 #### Tổng quan
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+**AI Pulmonary Diagnostic Suite** là một nền tảng trí tuệ nhân tạo (AI) được thiết kế chuyên biệt để hỗ trợ các bác sĩ chẩn đoán hình ảnh phát hiện sớm các bệnh lý về phổi thông qua ảnh chụp X-quang/CT.
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
+Trong bài lab này, chúng ta sẽ thực hành xây dựng một quy trình MLOps hoàn chỉnh (end-to-end) trên AWS, từ khâu chuẩn bị dữ liệu đến khi triển khai một API chẩn đoán thực tế. Khác với các hệ thống truyền thống đòi hỏi máy chủ chạy 24/7 gây lãng phí, dự án này được thiết kế để tối ưu hóa chi phí triệt để.
 
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
+Chúng ta sẽ kết hợp các dịch vụ cốt lõi của AWS để tạo ra một hệ thống tự động hóa và có khả năng tự động thu phóng (scale-to-zero):
++ **Amazon S3** - Đóng vai trò làm Hồ dữ liệu (Data Lake) an toàn để chứa dữ liệu hình ảnh phổi thô (toy dataset) và lưu trữ các tệp mô hình (Model Artifacts)[cite: 6].
++ **Amazon SageMaker** - Tự động hóa các tác vụ tiền xử lý dữ liệu, cấp phát tài nguyên huấn luyện mô hình (Training), và cung cấp Serverless Endpoint phục vụ suy luận phi máy chủ.
++ **AWS Lambda & Amazon API Gateway** - Đóng vai trò làm lớp API backend trung gian, tiếp nhận hình ảnh từ giao diện Web, xử lý và gọi đến SageMaker Endpoint để trả về kết quả chẩn đoán.
 
 #### Nội dung
 
-1. [Tổng quan về workshop](5.1-Workshop-overview/)
-2. [Chuẩn bị](5.2-Prerequiste/)
-3. [Truy cập đến S3 từ VPC](5.3-S3-vpc/)
-4. [Truy cập đến S3 từ TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (làm thêm)](5.5-Policy/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+1. [Giới thiệu](5.1-Workshop-overview/)
+2. [Các bước chuẩn bị](5.2-Prerequisite/)
+3. [Tiền xử lý dữ liệu](5.3-Data-preparation/)
+4. [Huấn luyện mô hình](5.4-Model-training/)
+5. [Triển khai mô hình](5.5-Model-deployment/)
+6. [Xây dựng API (API Setup)](5.6-API-setup/)
+7. [Giao diện Web Frontend](5.7-Frontend/)

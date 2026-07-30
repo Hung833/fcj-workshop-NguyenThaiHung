@@ -1,115 +1,81 @@
 ---
 title: "Proposal"
-date: 2024-01-01
+date: 2026-06-01
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-In this section, you need to summarize the contents of the workshop that you **plan** to conduct.
-
-# IoT Weather Platform for Lab Research
-## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
+# AI Pulmonary Diagnostic Suite  
+## AI Solution for Automated Pulmonary Disease Diagnosis on AWS MLOps Architecture  
 
 ### 1. Executive Summary
-The IoT Weather Platform is designed for the ITea Lab team in Ho Chi Minh City to enhance weather data collection and analysis. It supports up to 5 weather stations, with potential scalability to 10-15, utilizing Raspberry Pi edge devices with ESP32 sensors to transmit data via MQTT. The platform leverages AWS Serverless services to deliver real-time monitoring, predictive analytics, and cost efficiency, with access restricted to 5 lab members via Amazon Cognito.
+The **AI Pulmonary Diagnostic Suite** is an artificial intelligence (AI) platform specifically designed to assist radiologists in the early detection of pulmonary diseases using X-ray/CT imagery. The project harnesses the power of Deep Learning integrated with a modern **AWS MLOps** architecture. By utilizing 100% scalable AWS services—such as Amazon SageMaker, Amazon S3, and AWS Lambda—the solution delivers an automated workflow spanning data preprocessing, model training, hyperparameter optimization (HPO), and serverless inference deployment, optimizing operational costs while ensuring high diagnostic precision in healthcare.
 
 ### 2. Problem Statement
-### What’s the Problem?
-Current weather stations require manual data collection, becoming unmanageable with multiple units. There is no centralized system for real-time data or analytics, and third-party platforms are costly and overly complex.
+**Current Situation:**  
+Analyzing high volumes of chest X-ray/CT scans daily requires significant time and effort from medical staff, creating potential risks of diagnostic oversights caused by subjective factors or workload burnout. Furthermore, deploying existing medical AI models often lacks a standardized pipeline (CI/CD/CT), making model updates and version control challenging while incurring high costs to maintain 24/7 inference servers during idle periods.
 
-### The Solution
-The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, Amazon S3 for storage (including a data lake), and AWS Glue Crawlers and ETL jobs to extract, transform, and load data from the S3 data lake to another S3 bucket for analysis. AWS Amplify with Next.js provides the web interface, and Amazon Cognito ensures secure access. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time dashboards, trend analysis, and low operational costs.
+**Proposed Solution:**  
+Build an end-to-end MLOps system on AWS:
+*   Utilize **Amazon S3** as a Data Lake to store medical imaging datasets.
+*   Leverage **Amazon SageMaker** to execute pipelines for Data Preprocessing, Model Training, and Hyperparameter Optimization (HPO).
+*   Manage the model lifecycle via **SageMaker Model Registry**.
+*   Deploy models as **SageMaker Serverless Endpoints** with scale-to-zero capabilities for cost efficiency.
+*   Construct inference APIs using **Amazon API Gateway** and **AWS Lambda**.
 
-### Benefits and Return on Investment
-The solution establishes a foundational resource for lab members to develop a larger IoT platform, serving as a study resource, and provides a data foundation for AI enthusiasts for model training or analysis. It reduces manual reporting for each station via a centralized platform, simplifying management and maintenance, and improves data reliability. Monthly costs are $0.66 USD per the AWS Pricing Calculator, with a 12-month total of $7.92 USD. All IoT equipment costs are covered by the existing weather station setup, eliminating additional development expenses. The break-even period of 6-12 months is achieved through significant time savings from reduced manual work.
+**Key Benefits:**  
+*   **Medical Workflow Optimization:** Assists doctors in rapid localization and diagnosis, significantly reducing patient wait times.
+*   **Cost Optimization:** By applying Serverless Inference, the system incurs charges strictly when actual image diagnostic requests are processed, eliminating the expense of 24/7 active servers.
+*   **Full Automation:** Pipelines are defined as code (Pipelines as Code), enabling seamless retraining and deployment whenever new patient data becomes available.
 
 ### 3. Solution Architecture
-The platform employs a serverless AWS architecture to manage data from 5 Raspberry Pi-based stations, scalable to 15. Data is ingested via AWS IoT Core, stored in an S3 data lake, and processed by AWS Glue Crawlers and ETL jobs to transform and load it into another S3 bucket for analysis. Lambda and API Gateway handle additional processing, while Amplify with Next.js hosts the dashboard, secured by Cognito. The architecture is detailed below:
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+The system is designed following the AWS Well-Architected Framework, focusing specifically on the Machine Learning and Serverless Pillars.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+![AI Pulmonary Architecture](static/images/2-Proposal/MLOps_Architecture.png)
 
-### AWS Services Used
-- **AWS IoT Core**: Ingests MQTT data from 5 stations, scalable to 15.
-- **AWS Lambda**: Processes data and triggers Glue jobs (two functions).
-- **Amazon API Gateway**: Facilitates web app communication.
-- **Amazon S3**: Stores raw data in a data lake and processed outputs (two buckets).
-- **AWS Glue**: Crawlers catalog data, and ETL jobs transform and load it.
-- **AWS Amplify**: Hosts the Next.js web interface.
-- **Amazon Cognito**: Secures access for lab users.
-
-### Component Design
-- **Edge Devices**: Raspberry Pi collects and filters sensor data, sending it to IoT Core.
-- **Data Ingestion**: AWS IoT Core receives MQTT messages from the edge devices.
-- **Data Storage**: Raw data is stored in an S3 data lake; processed data is stored in another S3 bucket.
-- **Data Processing**: AWS Glue Crawlers catalog the data, and ETL jobs transform it for analysis.
-- **Web Interface**: AWS Amplify hosts a Next.js app for real-time dashboards and analytics.
-- **User Management**: Amazon Cognito manages user access, allowing up to 5 active accounts.
+**AWS Services & Functional Portfolio:**
+*   **Amazon S3:** Stores raw data (`toy_data`), preprocessed data, and trained Model Artifacts (`.tar.gz` files).
+*   **Amazon SageMaker Processing:** Executes image preprocessing scripts (`preprocessing.py`).
+*   **Amazon SageMaker Training & HPO:** Manages compute resources (EC2 instances) for model training (`train.py`) and discovers optimal hyperparameter combinations.
+*   **SageMaker Model Registry:** Registers and manages versioning for approved models.
+*   **SageMaker Serverless Inference:** Provides endpoints for real-time predictions without infrastructure management overhead.
+*   **AWS Lambda & API Gateway:** Constructs RESTful APIs to ingest client image payloads, invoke SageMaker Endpoints, and return diagnostic results.
 
 ### 4. Technical Implementation
-**Implementation Phases**
-This project has two parts—setting up weather edge stations and building the weather platform—each following 4 phases:
-- Build Theory and Draw Architecture: Research Raspberry Pi setup with ESP32 sensors and design the AWS serverless architecture (1 month pre-internship)
-- Calculate Price and Check Practicality: Use AWS Pricing Calculator to estimate costs and adjust if needed (Month 1).
-- Fix Architecture for Cost or Solution Fit: Tweak the design (e.g., optimize Lambda with Next.js) to stay cost-effective and usable (Month 2).
-- Develop, Test, and Deploy: Code the Raspberry Pi setup, AWS services with CDK/SDK, and Next.js app, then test and release to production (Months 2-3).
 
-**Technical Requirements**
-- Weather Edge Station: Sensors (temperature, humidity, rainfall, wind speed), a microcontroller (ESP32), and a Raspberry Pi as the edge device. Raspberry Pi runs Raspbian, handles Docker for filtering, and sends 1 MB/day per station via MQTT over Wi-Fi.
-- Weather Platform: Practical knowledge of AWS Amplify (hosting Next.js), Lambda (minimal use due to Next.js), AWS Glue (ETL), S3 (two buckets), IoT Core (gateway and rules), and Cognito (5 users). Use AWS CDK/SDK to code interactions (e.g., IoT Core rules to S3). Next.js reduces Lambda workload for the fullstack web app.
+Implementation is modularized into sequentially executed execution scripts (Pipelines):
+*   **Data Pipeline:** Runs `run_processing_job.py` to clean, resize, and normalize X-ray/CT images.
+*   **Training Pipeline:** Executes `run_training_job.py` and `run_hpo_job.py` to allocate automated training compute resources.
+*   **Deployment Pipeline:** Scripts `repack_and_deploy.py` and `deploy_serverless_endpoint.py` automatically package model artifacts and update Serverless Endpoints with zero downtime.
+*   **Monitoring:** Collects and audits system logs via `fetch_logs_v2.py` and `inspect_logs_all.py` on Amazon CloudWatch.
 
-### 5. Timeline & Milestones
-**Project Timeline**
-- Pre-Internship (Month 0): 1 month for planning and old station review.
-- Internship (Months 1-3): 3 months.
-    - Month 1: Study AWS and upgrade hardware.
-    - Month 2: Design and adjust architecture.
-    - Month 3: Implement, test, and launch.
-- Post-Launch: Up to 1 year for research.
+### 5. Roadmap & Milestones
+
+*   **Phase 1:** Analyze medical data, set up S3 storage repositories, author `preprocessing.py` scripts, and generate sample datasets (`create_toy_dataset.py`).
+*   **Phase 2:** Develop the Deep Learning model (`train.py`), and configure Training and HPO jobs on Amazon SageMaker.
+*   **Phase 3:** Construct MLOps Pipelines (Model Registration, artifact repacking, Serverless Endpoint provisioning).
+*   **Phase 4:** Establish API Gateway and AWS Lambda connections to Endpoints. Perform End-to-End testing and evaluate model performance.
 
 ### 6. Budget Estimation
-You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01).  
-Or you can download the [Budget Estimation File](../attachments/budget_estimation.pdf).
 
-### Infrastructure Costs
-- AWS Services:
-    - AWS Lambda: $0.00/month (1,000 requests, 512 MB storage).
-    - S3 Standard: $0.15/month (6 GB, 2,100 requests, 1 GB scanned).
-    - Data Transfer: $0.02/month (1 GB inbound, 1 GB outbound).
-    - AWS Amplify: $0.35/month (256 MB, 500 ms requests).
-    - Amazon API Gateway: $0.01/month (2,000 requests).
-    - AWS Glue ETL Jobs: $0.02/month (2 DPUs).
-    - AWS Glue Crawlers: $0.07/month (1 crawler).
-    - MQTT (IoT Core): $0.08/month (5 devices, 45,000 messages).
+Adopting Serverless Inference and Managed Training Jobs ensures highly effective budget control. Costs are primarily driven by model training execution.
 
-Total: $0.7/month, $8.40/12 months
+**Estimated AWS Costs:**
+*   **Amazon S3:** ~$1.00/month (Dataset and model artifact storage).
+*   **SageMaker Training Jobs:** Dependent on active GPU instance runtimes (e.g., `ml.g4dn.xlarge`). Estimated at ~$10.00 – $20.00 for the development phase.
+*   **SageMaker Serverless Inference:** Charged per millisecond of compute and memory allocation (Billed exclusively when API calls are triggered). Estimated at ~$1.00 – $3.00/month for lab environments.
+*   **API Gateway & AWS Lambda:** Covered under the AWS Free Tier (Minimal cost).
 
-- Hardware: $265 one-time (Raspberry Pi 5 and sensors).
+### 7. Risk Management
 
-### 7. Risk Assessment
-#### Risk Matrix
-- Network Outages: Medium impact, medium probability.
-- Sensor Failures: High impact, low probability.
-- Cost Overruns: Medium impact, low probability.
-
-#### Mitigation Strategies
-- Network: Local storage on Raspberry Pi with Docker.
-- Sensors: Regular checks and spares.
-- Cost: AWS budget alerts and optimization.
-
-#### Contingency Plans
-- Revert to manual methods if AWS fails.
-- Use CloudFormation for cost-related rollbacks.
+| Risk | Probability | Impact | Mitigation Strategy |
+| :--- | :--- | :--- | :--- |
+| **Model Drift (Accuracy degradation)** | Medium | High | Establish SageMaker Model Monitor. Build automated retraining pipelines triggered by new data ingestion. |
+| **Medical Data Security (PHI)** | Low | Critical | Enforce Data Encryption At-Rest on S3 (KMS) and In-Transit via TLS/SSL. Adhere strictly to Least Privilege IAM policies. |
+| **Endpoint Cold Starts** | High | Medium | Execute `warmup_endpoint.py` scripts to maintain endpoint readiness, or use Provisioned Concurrency if absolute low latency is required. |
+| **Uncontrolled Training Costs** | Low | Medium | Configure AWS Budgets and set `MaxRuntimeInSeconds` caps on Training/HPO Jobs for automatic termination. |
 
 ### 8. Expected Outcomes
-#### Technical Improvements: 
-Real-time data and analytics replace manual processes.  
-Scalable to 10-15 stations.
-#### Long-term Value
-1-year data foundation for AI research.  
-Reusable for future projects.
+Delivers a fully functional Cloud-Native automated medical diagnostic system. The project extends beyond an isolated AI model to establish a **complete MLOps workflow**. The outcome provides a highly available pulmonary diagnostic API, creating potential integration opportunities for clinical Web/Mobile applications in real-world healthcare settings.

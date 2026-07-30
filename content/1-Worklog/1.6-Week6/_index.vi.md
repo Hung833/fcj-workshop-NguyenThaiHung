@@ -1,22 +1,22 @@
 ---
-title: "Worklog Tuần 6"
+title: "Tuần 6"
 date: 2026-07-06
 weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
-### Mục tiêu tuần 6:
-* Đưa mô hình tốt nhất vào SageMaker Model Registry để quản lý phiên bản chuyên nghiệp.
+### Mục tiêu tuần 6
+* Quản lý phiên bản mô hình bằng SageMaker Model Registry để chuẩn bị đem đi Deploy.
 
-### Các công việc triển khai:
-| Thứ | Công việc | Hoàn thành |
-| --- | --- | --- |
-| 2 (06/07) | Tạo Model Package Group tên là `Pulmonary-Diagnostic-Models` trên giao diện Studio. | 06/07/2026 |
-| 3 (07/07) | Dùng code Python (Boto3) đăng ký mô hình tốt nhất từ đợt HPO tuần trước vào Registry. | 07/07/2026 |
-| 4 (08/07) | Đánh giá mô hình, chuyển status của model sang `Approved` để chuẩn bị cho việc Deploy. | 08/07/2026 |
-| 5 (09/07) | Tạo file `inference.py` (Custom Handler) để chuẩn bị cho bước triển khai endpoint, xử lý vụ nhận ảnh Base64. | 09/07/2026 |
-| 6 (10/07) | Review chéo (cross-check) lại code của nhau để đảm bảo file inference không bị bug. | 10/07/2026 |
+### Tiến độ công việc
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Mình tạo Model Package Group tên là `Pulmonary-Diagnostic-Models` trên SageMaker. | 06/07/2026 | 06/07/2026 | [SageMaker Model Registry](https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html) |
+| 3 | - Dùng code Python (boto3) để register model tốt nhất từ đợt HPO tuần trước vào Registry. | 07/07/2026 | 07/07/2026 | [Boto3 ModelPackage API](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html) |
+| 4 | - Cấu hình quy trình duyệt. Chuyển status của version này sang `Approved` để đánh dấu sẵn sàng lên Production. | 08/07/2026 | 08/07/2026 | [MLOps Model Approval](https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry-approve.html) |
+| 5 | - Nhóm bắt đầu viết file `inference.py` (Custom Handler) để xử lý logic nhận ảnh Base64 từ Frontend gửi xuống. | 09/07/2026 | 09/07/2026 | [SageMaker Inference Toolkit](https://github.com/aws/sagemaker-inference-toolkit) |
+| 6 | - Review chéo lại đoạn code xử lý array numpy trong file inference để chống lỗi tràn RAM. | 10/07/2026 | 10/07/2026 | [NumPy Memory Management](https://numpy.org/doc/stable/user/basics.html) |
 
-### Kết quả đạt được:
-* Mô hình đã được quản lý version đàng hoàng. File code `inference.py` đã sẵn sàng để tích hợp vào Endpoint.
+### Thành tựu đạt được
+* Model đã được đánh version (v1) và quản lý tập trung, chuyên nghiệp. Không còn lưu file lung tung trong ổ cứng.

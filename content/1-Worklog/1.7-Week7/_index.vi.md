@@ -1,23 +1,23 @@
 ---
-title: "Worklog Tuần 7"
+title: "Tuần 7"
 date: 2026-07-13
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
-### Mục tiêu tuần 7:
-* Triển khai model lên Serverless Endpoint để không tốn tiền nuôi server 24/7.
-* Code Lambda và API Gateway để làm cổng giao tiếp an toàn.
+### Mục tiêu tuần 7
+* Deploy mô hình lên Serverless Endpoint để tối ưu chi phí.
+* Dựng tầng kết nối Backend bằng API Gateway và Lambda.
 
-### Các công việc triển khai:
-| Thứ | Công việc | Hoàn thành |
-| --- | --- | --- |
-| 2 (13/07) | Viết script repack lại model, tự động nhúng `requirements.txt` (chứa numpy, Pillow) vào file tar.gz. | 13/07/2026 |
-| 3 (14/07) | Chạy script deploy tạo SageMaker Serverless Endpoint V2. | 14/07/2026 |
-| 4 (15/07) | Code file `lambda_function.py`. Set biến môi trường `ENDPOINT_NAME` cho Lambda để không phải hardcode. | 15/07/2026 |
-| 5 (16/07) | Setup Amazon API Gateway, nối vào Lambda, tạo route `POST /predict`. | 16/07/2026 |
-| 6 (17/07) | Test luồng API bằng lệnh `curl`. Hệ thống đã trả về kết quả JSON báo % xác suất viêm phổi ngon lành. | 17/07/2026 |
+### Tiến độ công việc
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Mình nén lại model kèm file `requirements.txt` (bổ sung Pillow, numpy) để lúc deploy server cài đủ thư viện. | 13/07/2026 | 13/07/2026 | [Python PIP Packaging](https://packaging.python.org/en/latest/) |
+| 3 | - Chạy code deploy tạo SageMaker Serverless Endpoint V2. Cấu hình RAM 2GB. | 14/07/2026 | 14/07/2026 | [SageMaker Serverless Inference](https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html) |
+| 4 | - Cả nhóm code hàm AWS Lambda. Mình gắn biến môi trường `ENDPOINT_NAME` và cấp quyền IAM Role cho Lambda. | 15/07/2026 | 15/07/2026 | [AWS Lambda Env Vars](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html) |
+| 5 | - Setup API Gateway, map với hàm Lambda, cấu hình POST method `/predict`. | 16/07/2026 | 16/07/2026 | [API Gateway REST APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-rest-api.html) |
+| 6 | - Team dùng cURL bắn ảnh test thử vào API. Kết quả trả về JSON mượt mà. | 17/07/2026 | 17/07/2026 | [cURL Documentation](https://curl.se/docs/) |
 
-### Kết quả đạt được:
-* Xây xong phần Backend Serverless cực kỳ tiết kiệm chi phí. Khi không ai xài, AWS tự tắt máy chủ, bill tự động về 0.
+### Thành tựu đạt được
+* Dựng xong Backend Serverless hoàn chỉnh. Khi không có request, máy chủ tự tắt, hóa đơn AWS = $0.00.

@@ -1,22 +1,22 @@
 ---
-title: "Worklog Tuần 4"
+title: "Tuần 4"
 date: 2026-06-22
 weight: 4
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
-### Mục tiêu tuần 4:
-* Viết code train mô hình DenseNet121 và chạy thử SageMaker Training Job.
+### Mục tiêu tuần 4
+* Train mô hình AI (DenseNet121) bằng SageMaker Training Job với cục data đã xử lý tuần trước.
 
-### Các công việc triển khai:
-| Thứ | Công việc | Hoàn thành |
-| --- | --- | --- |
-| 2 (22/06) | Một bạn chịu trách nhiệm viết file `train.py` dùng Keras/TensorFlow, nhận param truyền vào từ bên ngoài. | 22/06/2026 |
-| 3 (23/06) | Bạn còn lại setup SageMaker Estimator trong file notebook, cấu hình image TensorFlow có sẵn của AWS. | 23/06/2026 |
-| 4 (24/06) | Gắn input data từ S3 vào Estimator, bấm chạy Training Job. Chọn máy GPU `ml.p3.2xlarge` để train nhanh. | 24/06/2026 |
-| 5 (25/06) | Mở CloudWatch Logs xem quá trình train, check các chỉ số Loss và Accuracy. | 25/06/2026 |
-| 6 (26/06) | Vào S3 check file `model.tar.gz`. Xác nhận mô hình đã được train xong và đóng gói chuẩn. | 26/06/2026 |
+### Tiến độ công việc
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Mình code file `train.py` dùng Keras, setup dùng `argparse` để nhận hyperparameter từ bên ngoài truyền vào. | 22/06/2026 | 22/06/2026 | [TensorFlow API Docs](https://www.tensorflow.org/api_docs) |
+| 3 | - Khởi tạo SageMaker TensorFlow Estimator. Chỉ định đường dẫn data đầu vào từ S3. | 23/06/2026 | 23/06/2026 | [SageMaker TensorFlow Estimator](https://sagemaker.readthedocs.io/en/stable/frameworks/tensorflow/sagemaker.tensorflow.html) |
+| 4 | - Bấm chạy Training Job. Chọn máy GPU `ml.p3.2xlarge` để train cho nhanh. | 24/06/2026 | 24/06/2026 | [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/) |
+| 5 | - Monitor quá trình train qua CloudWatch Logs.<br>- Fix vài bug lặt vặt về đường dẫn OS path trong container. | 25/06/2026 | 25/06/2026 | [SageMaker Training Logs](https://docs.aws.amazon.com/sagemaker/latest/dg/logging-cloudwatch.html) |
+| 6 | - Lên S3 check output. Xác nhận file `model.tar.gz` đã được sinh ra thành công. | 26/06/2026 | 26/06/2026 | [SageMaker Model Output](https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-output.html) |
 
-### Kết quả đạt được:
-* Container TensorFlow của AWS chạy mượt, không bị lỗi thư viện. File trọng số (weights) đã nằm gọn gàng trên S3 sẵn sàng cho các bước sau.
+### Thành tựu đạt được
+* AWS đã train xong model AI đầu tiên của nhóm. File trọng số (weights) được đóng gói đúng chuẩn SageMaker và lưu an toàn trên S3.

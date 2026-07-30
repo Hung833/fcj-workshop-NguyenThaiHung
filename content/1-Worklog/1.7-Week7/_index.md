@@ -1,23 +1,23 @@
 ---
-title: "Week 7 Worklog"
+title: "Week 7"
 date: 2026-07-13
 weight: 7
 chapter: false
 pre: " <b> 1.7. </b> "
 ---
 
-### Week 7 Objectives:
-* Deploy the model onto a Serverless Endpoint to eliminate 24/7 idle server costs.
-* Develop Lambda and API Gateway components to serve as a secure communication layer.
+### Week 7 Objectives
+* Deploy model to Serverless Endpoint for cost optimization.
+* Build Backend connection layer integrating API Gateway and AWS Lambda.
 
-### Implemented Tasks:
-| Day | Task | Completion Date |
-| --- | --- | --- |
-| Mon (07/13) | Wrote a model repackaging script to embed `requirements.txt` (containing numpy, Pillow) directly into `model.tar.gz`. | 07/13/2026 |
-| Tue (07/14) | Executed deployment scripts provisioning a SageMaker Serverless Endpoint V2. | 07/14/2026 |
-| Wed (07/15) | Developed `lambda_function.py`, setting `ENDPOINT_NAME` as an environment variable to prevent hardcoding. | 07/15/2026 |
-| Thu (07/16) | Configured Amazon API Gateway, integrated it with Lambda, and created route `POST /predict`. | 07/16/2026 |
-| Fri (07/17) | Tested the end-to-end API workflow using `curl`. The system returned JSON payloads with pneumonia probability percentages accurately. | 07/17/2026 |
+### Task Progress
+| Day | Task | Start Date | Completion Date | Reference Sources |
+| --- | --- | --- | --- | --- |
+| Mon | - Packaged model archive with `requirements.txt` (adding Pillow, numpy) to ensure automated dependency installation upon deployment. | 07/13/2026 | 07/13/2026 | [Python PIP Packaging](https://packaging.python.org/en/latest/) |
+| Tue | - Executed deployment code to provision SageMaker Serverless Endpoint V2 configured with 2GB RAM. | 07/14/2026 | 07/14/2026 | [SageMaker Serverless Inference](https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html) |
+| Wed | - Co-authored AWS Lambda handler. Configured `ENDPOINT_NAME` environment variable and assigned IAM execution permissions. | 07/15/2026 | 07/15/2026 | [AWS Lambda Env Vars](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html) |
+| Thu | - Configured API Gateway, mapping RESTful `POST /predict` method to the Lambda proxy. | 07/16/2026 | 07/16/2026 | [API Gateway REST APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-rest-api.html) |
+| Fri | - Tested API via cURL image request payloads, receiving valid JSON responses. | 07/17/2026 | 07/17/2026 | [cURL Documentation](https://curl.se/docs/) |
 
-### Key Achievements:
-* Completed a highly cost-efficient Serverless Backend. When idle, AWS automatically spins down compute resources, reducing billing charges to zero.
+### Key Achievements
+* Established complete Serverless Backend. Infrastructure scales down to zero when idle ($0.00 base cost).

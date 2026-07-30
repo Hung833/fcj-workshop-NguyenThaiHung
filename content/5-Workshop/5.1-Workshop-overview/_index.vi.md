@@ -24,4 +24,4 @@ Chúng ta sẽ đi qua các phần chính sau:
 
 *(Lưu ý: Quá trình huấn luyện mô hình trên SageMaker có thể yêu cầu tài nguyên máy ảo GPU/CPU và phát sinh chi phí. Hãy đảm bảo bạn theo dõi ngân sách và nhớ làm tới bước cuối cùng là xóa tài nguyên (Clean-up) để không bị AWS trừ tiền ngoài ý muốn nhé!)*
 
-![Tổng quan kiến trúc dự án](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+![Tổng quan kiến trúc dự án](/images/5-Workshop/5.1-Workshop-overview/Diagram.jpeg)

@@ -33,7 +33,7 @@ Xây dựng một hệ thống MLOps end-to-end trên AWS:
 
 Hệ thống được thiết kế theo chuẩn AWS Well-Architected Framework, tập trung vào Pillar Machine Learning và Serverless.
 
-![AI Pulmonary Architecture](/images/2-Proposal/mlops_architecture.jpeg)
+![AI Pulmonary Architecture](/images/2-Proposal/mlops_architecture.png)
 
 **Danh mục AWS Services & Chức năng:**
 *   **Amazon S3:** Lưu trữ dữ liệu thô (toy_data), dữ liệu đã qua tiền xử lý, và các Model Artifacts (file `.tar.gz`) sau khi huấn luyện.

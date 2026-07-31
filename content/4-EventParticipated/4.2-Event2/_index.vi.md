@@ -61,11 +61,11 @@ Sự kiện diễn ra với hai phần hoạt động chính: Trận Chung kết
 - **Rèn luyện kỹ năng mềm:** Tích lũy kỹ năng quan sát, tư duy phản biện khi phân tích các đáp án kiến trúc đám mây trong phần thi trắc nghiệm; đồng thời học hỏi phong cách truyền đạt, demo xử lý sự cố trực tiếp (live troubleshooting) từ các kỹ sư giàu kinh nghiệm.
 - **Định hướng phát triển bản thân:** Định hình rõ đường lối học tập công nghệ Cloud/DevOps, chuẩn bị lộ trình chinh phục các chứng chỉ AWS để làm đẹp hồ sơ chuyên môn và gia tăng lợi thế cạnh tranh nghề nghiệp.
 
-![Event2](/images/4-EventParticipated/event_11-6-26/1.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/2.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/3.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/4.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/5.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/6.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/7.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/8.png)
+![Event2](/images/4-EventParticipated/event_11-6-26/1.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/2.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/3.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/4.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/5.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/6.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/7.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/8.jpg)

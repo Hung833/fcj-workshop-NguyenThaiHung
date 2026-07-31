@@ -36,7 +36,7 @@ Khi lệnh được thực thi, AWS SageMaker Python SDK sẽ đóng gói file p
 
 Sau khi hoàn tất, bạn sẽ thấy dữ liệu đã được xử lý và lưu trữ trong S3 bucket của bạn. Bạn có thể kiểm tra bằng cách truy cập vào S3 bucket và xác nhận rằng các tập dữ liệu Train, Validation và Test đã được tạo ra đúng cách.
 
-![Hoàn tất bước tiền xử lý dữ liệu](\images\5-Workshop\5.3-Data-preparation\run-processing-job.png)
+![Hoàn tất bước tiền xử lý dữ liệu](/images/5-Workshop/5.3-Data-preparation/run-processing-job.png)
 
 ### 3. Kiểm tra kết quả trên AWS Console
 Để quan sát trực quan những gì hệ thống MLOps vừa thực hiện ngầm, chúng ta có thể kiểm tra trực tiếp trên giao diện AWS.
@@ -44,11 +44,11 @@ Sau khi hoàn tất, bạn sẽ thấy dữ liệu đã được xử lý và l�
 Kiểm tra SageMaker Processing Job:
 Truy cập vào dịch vụ Amazon SageMaker -> Ở menu bên trái, chọn mục Processing -> Processing jobs. Bạn sẽ thấy một Job mới vừa được tạo ra với trạng thái là Completed (Đã hoàn thành).
 
-![Kiểm tra Processing Job trên AWS Console](\images\5-Workshop\5.3-Data-preparation\sagemaker-processing-job.png)
+![Kiểm tra Processing Job trên AWS Console](/images/5-Workshop/5.3-Data-preparation/sagemaker-processing-job.png)
 
 Kiểm tra dữ liệu đầu ra trên Amazon S3:
 Tiếp tục truy cập vào dịch vụ Amazon S3 và mở Bucket chứa dữ liệu của dự án. Lúc này, bạn sẽ thấy hệ thống tự động tạo ra một thư mục mới (ví dụ: processed_data hoặc cấu trúc thư mục chứa train, validation, test). Đây chính là dữ liệu "sạch" đã sẵn sàng cho khâu huấn luyện.
 
-![Kiểm tra dữ liệu đầu ra trên Amazon S3](\images\5-Workshop\5.3-Data-preparation\s3-processed-data.png)
+![Kiểm tra dữ liệu đầu ra trên Amazon S3](/images/5-Workshop/5.3-Data-preparation/s3-processed-data.png)
 
 Với dữ liệu đã được chuẩn hóa thành công và lưu trữ an toàn trên S3, pipeline của chúng ta đã hoàn tất pha tiền xử lý và sẵn sàng bước vào giai đoạn cốt lõi nhất: Huấn luyện mô hình.

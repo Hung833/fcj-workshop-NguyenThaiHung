@@ -36,7 +36,7 @@ Once the command runs, the AWS SageMaker Python SDK will package the preprocessi
 
 Once it's done, you'll see the processed data stored in your S3 bucket. You can verify this by opening the S3 bucket and confirming that the Train, Validation, and Test datasets have been created correctly.
 
-![Data preprocessing step completed](\images\5-Workshop\5.3-Data-preparation\run-processing-job.png)
+        ![Data preprocessing step completed](/images/5-Workshop/5.3-Data-preparation/run-processing-job.png)
 
 ### 3. Verifying the Results in the AWS Console
 To visually observe what the MLOps system just did behind the scenes, we can check directly in the AWS console.
@@ -44,11 +44,11 @@ To visually observe what the MLOps system just did behind the scenes, we can che
 Checking the SageMaker Processing Job:
 Go to the Amazon SageMaker service -> in the left-hand menu, select Processing -> Processing jobs. You'll see a new job with a status of Completed.
 
-![Checking the Processing Job in the AWS Console](\images\5-Workshop\5.3-Data-preparation\sagemaker-processing-job.png)
+![Checking the Processing Job in the AWS Console](/images/5-Workshop/5.3-Data-preparation/sagemaker-processing-job.png)
 
 Checking the output data in Amazon S3:
 Next, go to the Amazon S3 service and open the bucket holding the project's data. You'll see the system has automatically created a new folder (for example: processed_data, or a folder structure containing train, validation, test). This is the "clean" data now ready for the training stage.
 
-![Checking the output data in Amazon S3](\images\5-Workshop\5.3-Data-preparation\s3-processed-data.png)
+![Checking the output data in Amazon S3](/images/5-Workshop/5.3-Data-preparation/s3-processed-data.png)
 
 With the data successfully normalized and safely stored on S3, our pipeline has completed the preprocessing phase and is ready to move into the most crucial stage: Model Training.

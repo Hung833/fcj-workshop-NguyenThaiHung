@@ -42,37 +42,8 @@ The automated cost control system is designed around three core AWS pillars:
 
 ### Alert Workflow Diagram
 
-```mermaid
-graph LR
-    subgraph AWS_Cloud["AWS Cloud"]
-        A[AWS Billing Engine] --> B[AWS Budgets - $200 Max]
-        B --> C[Amazon CloudWatch / SNS]
-    end
-    C --> D[Email Alert to Engineer]
-    
-    style AWS_Cloud fill:#f9f9f9,stroke:#232f3e,stroke-width:2px
-    style A fill:#FF9900,stroke:#232f3e,color:#fff
-    style B fill:#3F8600,stroke:#232f3e,color:#fff
-    style C fill:#E05243,stroke:#232f3e,color:#fff
-    style D fill:#2196F3,stroke:#232f3e,color:#fff
-```
-
-```mermaid
-architecture-beta
-
-    group aws(cloud)[AWS Cloud]
-
-    service billing(server)[Billing Engine] in aws
-    service budget(database)[AWS Budgets] in aws
-    service cloudwatch(internet)[CloudWatch] in aws
-    service sns(disk)[Amazon SNS] in aws
-    service user(internet)[Engineer]
-
-    billing:L -- R:budget
-    budget:L -- R:cloudwatch
-    cloudwatch:L -- R:sns
-    sns:L -- R:user
-```
+![Alert Workflow Diagram](/images/3-BlogsPosted/blog1/blog1-1.png)
+![Alert Workflow Diagram](/images/3-BlogsPosted/blog1/blog1-2.png)
 
 ### References:
 [![AWS Cost Management](https://img.shields.io/badge/AWS-Cost_Management_Doc-232F3E?logo=amazon-aws&logoColor=FF9900)](https://docs.aws.amazon.com/awscostmanagement/)

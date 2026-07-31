@@ -99,7 +99,7 @@ Attending this workshop was an invaluable experience that provided deep technica
 
 > **Summary:** The event provided not only deep technical networking knowledge but also transformed my mindset regarding system architecture design, Cloud infrastructure optimization, and software packaging standardization for real-world engineering projects.
 
-![Event1](/images/4-EventParticipated/event_6-6-26/1.png)
-![Event1](/images/4-EventParticipated/event_6-6-26/2.png)
-![Event1](/images/4-EventParticipated/event_6-6-26/3.png)
-![Event1](/images/4-EventParticipated/event_6-6-26/4.png)
+![Event1](/images/4-EventParticipated/event_6-6-26/1.jpg)
+![Event1](/images/4-EventParticipated/event_6-6-26/2.jpg)
+![Event1](/images/4-EventParticipated/event_6-6-26/3.jpg)
+![Event1](/images/4-EventParticipated/event_6-6-26/4.jpg)

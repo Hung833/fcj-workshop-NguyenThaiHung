@@ -61,11 +61,11 @@ The event consisted of two primary activity segments: The Cloud Architect Compet
 - **Soft Skills Refinement:** Developed critical thinking and analytical skills when evaluating cloud architecture options during the contest; learned live troubleshooting presentation styles from senior engineers.
 - **Career Path Orientation:** Clearly shaped learning roadmaps in Cloud/DevOps, setting structured milestones to earn AWS certifications to strengthen professional portfolios and enhance career competitiveness.
 
-![Event2](/images/4-EventParticipated/event_11-6-26/1.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/2.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/3.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/4.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/5.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/6.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/7.png)
-![Event2](/images/4-EventParticipated/event_11-6-26/8.png)
+![Event2](/images/4-EventParticipated/event_11-6-26/1.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/2.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/3.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/4.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/5.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/6.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/7.jpg)
+![Event2](/images/4-EventParticipated/event_11-6-26/8.jpg)

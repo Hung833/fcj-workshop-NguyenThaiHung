@@ -100,7 +100,7 @@ Tham gia buổi thuyết trình là một trải nghiệm vô cùng quý giá, m
 
 > **Tổng kết:** Sự kiện không chỉ cung cấp kiến thức kỹ thuật mạng chuyên sâu mà còn giúp tôi thay đổi cách tư duy về thiết kế kiến trúc hệ thống, tối ưu hóa hạ tầng Cloud và chuẩn hóa quy trình đóng gói phần mềm khi tham gia vào các dự án công nghệ thực tế.
 
-![Event1](/images/4-EventParticipated/event_6-6-26/1.png)
-![Event1](/images/4-EventParticipated/event_6-6-26/2.png)
-![Event1](/images/4-EventParticipated/event_6-6-26/3.png)
-![Event1](/images/4-EventParticipated/event_6-6-26/4.png)
+![Event1](/images/4-EventParticipated/event_6-6-26/1.jpg)
+![Event1](/images/4-EventParticipated/event_6-6-26/2.jpg)
+![Event1](/images/4-EventParticipated/event_6-6-26/3.jpg)
+![Event1](/images/4-EventParticipated/event_6-6-26/4.jpg)

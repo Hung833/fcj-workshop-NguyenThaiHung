@@ -7,17 +7,17 @@ chapter: false
 
 # Báo cáo thực tập
 ### Thông tin sinh viên:
-&emsp; **Họ và tên:** Nguyễn Văn A
+&emsp; **Họ và tên:** Nguyễn Thái Hưng
 
-&emsp; **Số điện thoại:** 0989888999
+&emsp; **Số điện thoại:** 0833504638
 
-&emsp; **Email:** Anguyenvan@gmail.com
+&emsp; **Email:** hung.nguyenthaihung@hcumt.edu.vn
 
 &emsp; **Trường:** Đại học Bách Khoa - ĐHQG - HCM
 
 &emsp; **Ngành:** Khoa học Máy tính
 
-&emsp; **Lớp:** AWS082025
+&emsp; **Lớp:** CN23KHM1
 
 &emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Viet Nam
 

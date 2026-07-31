@@ -33,7 +33,7 @@ Build an end-to-end MLOps system on AWS:
 
 The system is designed following the AWS Well-Architected Framework, focusing specifically on the Machine Learning and Serverless Pillars.
 
-![AI Pulmonary Architecture](/images/2-Proposal/mlops_architecture.png)
+![AI Pulmonary Architecture](/images/2-Proposal/mlops.png)
 
 **AWS Services & Functional Portfolio:**
 *   **Amazon S3:** Stores raw data (`toy_data`), preprocessed data, and trained Model Artifacts (`.tar.gz` files).

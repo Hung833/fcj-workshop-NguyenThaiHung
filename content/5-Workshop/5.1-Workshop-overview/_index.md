@@ -24,4 +24,4 @@ We'll go through the following main sections:
 
 *(Note: Training the model on SageMaker may require GPU/CPU virtual machine resources and incur costs. Be sure to monitor your budget and remember to complete the final step — cleaning up resources — so AWS doesn't charge you unintentionally!)*
 
-![Project architecture overview](/images/5-Workshop/5.1-Workshop-overview/diagram1.png)
+![Project architecture overview](/images/5-Workshop/5.1-Workshop-overview/diagram.png)

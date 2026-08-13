@@ -14,10 +14,10 @@ Trong dự án này, giao diện người dùng được xây dựng gọn nhẹ
 *   Gửi dữ liệu ảnh qua API Gateway tới SageMaker Endpoint để xử lý.
 *   Nhận kết quả từ AI và hiển thị trực quan đánh giá bệnh lý phổi lên màn hình.
 
-### 2. Chạy ứng dụng từ AWS CloudShell
-Để khởi chạy giao diện web, chúng ta sẽ thực thi file `app.py`. Tùy thuộc vào thư viện giao diện được sử dụng (như Streamlit hay Gradio), hệ thống sẽ tạo ra một máy chủ web cục bộ.
+### 2. Khởi chạy ứng dụng trên máy ảo EC2
+Để khởi chạy giao diện web, chúng ta sẽ thực thi file `app.py`. Tùy thuộc vào thư viện giao diện được sử dụng (như Streamlit hay Gradio), do đó hệ thống sẽ tự động khởi tạo một máy chủ web và phát sóng thông qua cổng 8501.
 
-Hãy quay lại terminal của **AWS CloudShell** và chạy lệnh khởi động ứng dụng:
+Ngay tại cửa sổ **Terminal** của máy ảo **EC2**, hãy chạy lệnh khởi động ứng dụng:
 
 ```bash
 streamlit run app.py    
@@ -44,6 +44,5 @@ Các bước thử nghiệm:
 ![Gửi yêu cầu tới AWS Serverless API](/images/5-Workshop/5.7-Frontend/web2.png)
 ![Hiển thị kết quả dự đoán](/images/5-Workshop/5.7-Frontend/web3.png)
 
-*Như vậy, chúng ta đã hoàn thiện toàn bộ quy trình xây dựng hệ thống AI Pulmonary Diagnostic Suite từ khâu tiền xử lý dữ liệu, huấn luyện mô hình cho đến khi hình thành một sản phẩm Web App hoàn chỉnh có thể tương tác được trong thực tế!*
 
-**Cảm ơn các bạn đã tham gia workshop và chúc các bạn thành công trong việc triển khai các dự án AI của riêng mình!**
+

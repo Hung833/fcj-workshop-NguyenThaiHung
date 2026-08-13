@@ -14,10 +14,11 @@ In this project, the user interface is built lightweight in Python via the `app.
 *   Send the image data through API Gateway to the SageMaker Endpoint for processing.
 *   Receive the AI's result and visually display the lung condition assessment on screen.
 
-### 2. Running the Application from AWS CloudShell
-To launch the web interface, we'll run the `app.py` file. Depending on which UI library is used (such as Streamlit or Gradio), the system will spin up a local web server.
+### 2. Launching the Application on the EC2 Instance
 
-Go back to the **AWS CloudShell** terminal and run the command to start the application:
+To launch the web interface, we will execute the `app.py` file. Since the project utilizes a UI framework (such as Streamlit or Gradio), the system will automatically initialize a web server and host it on port 8501.
+
+Right in your **EC2** instance's **Terminal**, run the following command to start the application:
 
 ```bash
 streamlit run app.py    
@@ -43,7 +44,3 @@ Steps to try it out:
 ![Diagnosis screen](/images/5-Workshop/5.7-Frontend/web1.png)
 ![Sending a request to the AWS Serverless API](/images/5-Workshop/5.7-Frontend/web2.png)
 ![Displaying the prediction result](/images/5-Workshop/5.7-Frontend/web3.png)
-
-*With that, we've completed the entire process of building the AI Pulmonary Diagnostic Suite system, from data preprocessing, to model training, to forming a complete Web App product that can be used interactively in the real world!*
-
-**Thank you all for joining the workshop, and best of luck deploying your own AI projects!**

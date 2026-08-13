@@ -79,3 +79,10 @@ Kiến trúc ứng dụng Serverless Inference và Managed Training Jobs giúp k
 
 ### 8. Kết quả kỳ vọng (Expected Outcomes)
 Hoàn thành một hệ thống chẩn đoán y tế tự động chuẩn Cloud-Native. Dự án không chỉ dừng lại ở một mô hình AI đơn lẻ mà hình thành một **quy trình MLOps hoàn chỉnh**. Kết quả cung cấp một API chẩn đoán phổi có độ sẵn sàng cao, mở ra tiềm năng tích hợp vào các ứng dụng Web/App của các bệnh viện hoặc phòng khám trong thực tế.
+
+## Project Demo & Source Code
+
+**💻 GitHub Repository:** [FCAJ-AI-Pulmonary-Diagnostic-Suite](https://github.com/Hung833/FCAJ-AI-Pulmonary-Diagnostic-Suite.git)
+
+**🎥 Demo Video:**
+{{< youtube 8IqXn-UEEEg >}}

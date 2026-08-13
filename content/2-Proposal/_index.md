@@ -79,3 +79,10 @@ Adopting Serverless Inference and Managed Training Jobs ensures highly effective
 
 ### 8. Expected Outcomes
 Delivers a fully functional Cloud-Native automated medical diagnostic system. The project extends beyond an isolated AI model to establish a **complete MLOps workflow**. The outcome provides a highly available pulmonary diagnostic API, creating potential integration opportunities for clinical Web/Mobile applications in real-world healthcare settings.
+
+## Project Demo & Source Code
+
+**💻 GitHub Repository:** [FCAJ-AI-Pulmonary-Diagnostic-Suite](https://github.com/Hung833/FCAJ-AI-Pulmonary-Diagnostic-Suite.git)
+
+**🎥 Demo Video:**
+{{< youtube 8IqXn-UEEEg >}}
